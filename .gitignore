@@ -1,0 +1,12 @@
+# Node
+node_modules/
+.env
+npm-debug.log
+
+# React
+frontend/node_modules/
+frontend/.env
+build/
+
+# VSCode
+.vscode/
