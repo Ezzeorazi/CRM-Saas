@@ -32,5 +32,7 @@ app.use('/api/auth', authRoutes);
 const protegidaRoutes = require('./routes/protegidaRoutes');
 app.use('/api/protegida', protegidaRoutes);
 
+const productoRoutes = require('./routes/productRoutes');
+app.use('/api/productos', productoRoutes);
 
 module.exports = app;

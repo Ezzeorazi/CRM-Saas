@@ -1,30 +1,30 @@
 
 # 🚀 CRM SaaS – Proyecto Completo
 
-**CRM escalable en la nube para PYMEs**, desarrollado con el stack **MERN** (MongoDB, Express, React, Node.js). Permite a empresas gestionar todas sus áreas clave: ventas, compras, inventario, RRHH y producción, con acceso por roles y desde cualquier dispositivo.
+**CRM escalable en la nube para PYMEs**, desarrollado con el stack **MERN** (MongoDB, Express, React, Node.js). Permite gestionar áreas clave: ventas, compras, inventario, RRHH y producción.
 
 ---
 
 ## 📌 Características principales
 
-- Acceso seguro por roles (admin, ventas, compras, inventario, RRHH, producción)
-- Backend con Express + MongoDB Atlas
-- Autenticación con JWT y encriptación de contraseñas
-- Rutas protegidas por token y por nivel de usuario
-- Arquitectura escalable, preparada para módulos futuros
-- Accesible desde web y móvil (vía frontend React/PWA)
+- Autenticación segura con JWT y control por roles
+- Gestión de usuarios y productos desde dashboard
+- API RESTful con protección de rutas
+- Interfaz limpia, responsiva y escalable (React + Tailwind)
+- Arquitectura modular preparada para crecimiento
 
 ---
 
 ## 🧱 Stack tecnológico
 
-| Parte       | Tecnología        |
-|-------------|-------------------|
-| Backend     | Node.js + Express |
-| Base de datos | MongoDB Atlas    |
-| Autenticación | JWT + BcryptJS   |
-| Frontend    | React (próximamente) |
-| Hosting     | Render, Vercel, MongoDB Atlas |
+| Parte         | Tecnología         |
+|---------------|--------------------|
+| Backend       | Node.js + Express  |
+| Base de datos | MongoDB Atlas      |
+| Autenticación | JWT + BcryptJS     |
+| Frontend      | React + Vite       |
+| UI            | Tailwind CSS       |
+| Hosting       | Render, Vercel     |
 
 ---
 
@@ -38,38 +38,46 @@ crm-saas/
 │   ├── routes/
 │   ├── middleware/
 │   └── ...
-├── frontend/             # (En desarrollo)
+├── frontend/             # Interfaz React + Vite + Tailwind
+│   ├── pages/
+│   ├── components/
+│   └── ...
 ├── README.md             # Este archivo
-└── README_backend.md     # Documentación técnica del backend
+├── README_backend.md     # Documentación técnica del backend
+├── README_frontend.md    # Documentación técnica del frontend
 ```
 
 ---
 
-## 🚦 Estado del desarrollo
+## 🚦 Estado actual
 
-### ✅ Completado
-- Configuración del backend
-- Conexión a MongoDB Atlas
-- Registro y login con JWT
-- Middleware de autenticación y control por roles
+### ✅ Backend
+- Registro/login con JWT
+- CRUD de usuarios
+- CRUD de productos
+- Protección por roles
 
-### 🔜 En desarrollo
-- Frontend con React
-- Módulo de Inventario
-- Módulo de Ventas y Clientes
-- Módulo de Compras y Proveedores
-- Módulo de Producción
-- Automatizaciones y alertas internas
+### ✅ Frontend
+- Login protegido con contexto
+- Gestión de usuarios (alta, baja, edición)
+- Gestión de productos
+- Navegación responsiva y diseño limpio
+
+### 🧩 En desarrollo
+- Módulo de inventario avanzado
+- Panel de tareas y producción
+- Estadísticas y gráficos
+- Automatizaciones (alertas)
 
 ---
 
 ## 🧑‍💻 Autor
 
-**Ezequiel** – Desarrollo Fullstack  
-Proyecto personal de CRM SaaS para empresas medianas.
+**Ezequiel** – Desarrollo Fullstack MERN  
+Proyecto SaaS personal para empresas medianas.
 
 ---
 
 ## 📄 Licencia
 
-Uso personal, educativo y comercial bajo responsabilidad del desarrollador.
+Uso libre bajo responsabilidad del desarrollador.

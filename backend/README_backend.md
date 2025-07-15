@@ -4,11 +4,11 @@
 CRM escalable en la nube para PYMEs, desarrollado con el stack **MERN** (MongoDB, Express, React, Node.js).
 
 Este backend incluye:
-- Registro de usuarios con roles
-- Autenticación con JWT
+- Registro y login de usuarios con JWT
+- CRUD de usuarios y productos
 - Encriptación de contraseñas con bcrypt
-- Middleware de protección de rutas
-- Control de acceso por rol
+- Middleware de autenticación y autorización por roles
+- Estructura modular escalable
 
 ---
 
@@ -19,6 +19,7 @@ Este backend incluye:
 - JWT (jsonwebtoken)
 - BcryptJS
 - Dotenv
+- Nodemon
 
 ---
 
@@ -27,9 +28,9 @@ Este backend incluye:
 ```
 backend/
 ├── config/              # Configuraciones generales
-├── controllers/         # Lógica de negocio (usuarios, auth)
+├── controllers/         # Lógica de negocio (usuarios, productos)
 ├── middleware/          # Autenticación y roles
-├── models/              # Esquemas Mongoose (User)
+├── models/              # Esquemas Mongoose (User, Product)
 ├── routes/              # Rutas Express
 ├── utils/               # Funciones auxiliares
 ├── .env                 # Variables de entorno
@@ -50,49 +51,24 @@ JWT_SECRET=supersecreto123
 
 ---
 
-## 📌 Funcionalidades implementadas
+## 📌 Endpoints disponibles
 
-### ✅ Registro de usuario (con contraseña encriptada)
+### Usuarios
+- `POST /api/usuarios` – Crear usuario
+- `GET /api/usuarios` – Listar usuarios (protegido)
+- `GET /api/usuarios/:id` – Ver un usuario
+- `PUT /api/usuarios/:id` – Editar usuario
+- `DELETE /api/usuarios/:id` – Eliminar usuario
 
-`POST /api/usuarios`
+### Auth
+- `POST /api/auth/login` – Login y entrega de token
 
-```json
-{
-  "nombre": "Ezequiel",
-  "email": "ezequiel@empresa.com",
-  "contraseña": "123456",
-  "rol": "admin"
-}
-```
-
----
-
-### ✅ Login de usuario
-
-`POST /api/auth/login`
-
-```json
-{
-  "email": "ezequiel@empresa.com",
-  "contraseña": "123456"
-}
-```
-
-🔁 Devuelve un token JWT para usar en rutas protegidas.
-
----
-
-### 🔐 Ruta protegida con token y control por rol
-
-`GET /api/protegida`
-
-Headers:
-
-```
-Authorization: Bearer <token>
-```
-
-✔️ Permitido solo para roles: `admin`, `rrhh`
+### Productos
+- `POST /api/productos` – Crear producto
+- `GET /api/productos` – Listar productos
+- `GET /api/productos/:id` – Ver producto
+- `PUT /api/productos/:id` – Editar producto
+- `DELETE /api/productos/:id` – Eliminar producto
 
 ---
 
@@ -114,14 +90,10 @@ Authorization: Bearer <token>
 
 ---
 
-## ✅ Próximos módulos a implementar
+## ✅ Módulos activos
 
-- Inventario (stock)
-- Ventas y clientes
-- Compras y proveedores
-- Producción y materia prima
-- Panel de tareas internas
-- Automatización y alertas
+- Autenticación y usuarios
+- Productos (stock básico)
 
 ---
 
