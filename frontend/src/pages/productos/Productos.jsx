@@ -1,25 +1,41 @@
 import { useEffect, useState, useContext } from 'react';
-import { AuthContext } from '../context/AuthContext';
-import clienteAxios from '../api/clienteAxios';
+import { AuthContext } from '../../context/AuthContext';
+import clienteAxios from '../../api/clienteAxios';
 import { Link } from 'react-router-dom';
+import FiltrosProductos from './FiltrosProductos';
 
 function Productos() {
   const { token } = useContext(AuthContext);
   const [productos, setProductos] = useState([]);
+  const [filtros, setFiltros] = useState({
+    disponibilidad: '',
+    busqueda: '',
+  });
+
+  const obtenerProductos = async () => {
+    try {
+      const { data } = await clienteAxios.get('/productos', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setProductos(data);
+    } catch (error) {
+      console.error('Error al obtener productos:', error.response?.data?.mensaje);
+    }
+  };
 
   useEffect(() => {
-    const obtenerProductos = async () => {
-      try {
-        const { data } = await clienteAxios.get('/productos', {
-          headers: { Authorization: `Bearer ${token}` }
-        });
-        setProductos(data);
-      } catch (error) {
-        console.error('Error al obtener productos:', error.response?.data?.mensaje);
-      }
-    };
     obtenerProductos();
   }, [token]);
+
+  const productosFiltrados = productos.filter((p) => {
+    const coincideBusqueda = p.nombre.toLowerCase().includes(filtros.busqueda.toLowerCase());
+    const coincideDisponibilidad =
+      filtros.disponibilidad === ''
+        || (filtros.disponibilidad === 'disponible' && p.stock > 0)
+        || (filtros.disponibilidad === 'agotado' && p.stock === 0);
+
+    return coincideBusqueda && coincideDisponibilidad;
+  });
 
   const handleEliminar = async (id) => {
     const confirmar = confirm('¿Estás seguro de eliminar este producto?');
@@ -35,10 +51,9 @@ function Productos() {
     }
   };
 
-
   return (
     <div>
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center mb-4 flex-wrap gap-4">
         <h2 className="text-2xl font-bold">Productos</h2>
         <Link
           to="/dashboard/productos/nuevo"
@@ -47,7 +62,10 @@ function Productos() {
           + Nuevo Producto
         </Link>
       </div>
-      <div className="overflow-x-auto bg-white rounded shadow">
+
+      <FiltrosProductos filtros={filtros} setFiltros={setFiltros} />
+
+      <div className="overflow-x-auto bg-white rounded shadow mt-4">
         <table className="min-w-full text-left">
           <thead className="bg-gray-100">
             <tr>
@@ -60,7 +78,7 @@ function Productos() {
             </tr>
           </thead>
           <tbody>
-            {productos.map(producto => (
+            {productosFiltrados.map(producto => (
               <tr key={producto._id} className="border-b hover:bg-gray-50">
                 <td className="p-3">{producto.nombre}</td>
                 <td className="p-3">{producto.sku}</td>
@@ -77,10 +95,14 @@ function Productos() {
                   >
                     Eliminar
                   </button>
-
                 </td>
               </tr>
             ))}
+            {productosFiltrados.length === 0 && (
+              <tr>
+                <td colSpan="6" className="text-center p-4 text-gray-500">No se encontraron productos</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

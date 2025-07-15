@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import clienteAxios from '../api/clienteAxios';
-import { AuthContext } from '../context/AuthContext';
+import clienteAxios from '../../api/clienteAxios';
+import { AuthContext } from '../../context/AuthContext';
 
 function EditarUsuario() {
   const { id } = useParams();

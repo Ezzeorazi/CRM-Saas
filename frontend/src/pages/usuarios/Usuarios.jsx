@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
-import clienteAxios from '../api/clienteAxios';
-import { AuthContext } from '../context/AuthContext';
+import clienteAxios from '../../api/clienteAxios';
+import { AuthContext } from '../../context/AuthContext';
 import { Link } from 'react-router-dom';
 
 function Usuarios() {

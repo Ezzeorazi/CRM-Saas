@@ -10,4 +10,16 @@ router.get('/', verificarToken, permitirRoles('admin', 'rrhh'), (req, res) => {
   });
 });
 
+router.get(
+  '/',
+  verificarToken,
+  permitirRoles('admin', 'ventas', 'soporte', 'marketing'),
+  (req, res) => {
+    res.json({
+      mensaje: 'Acceso permitido a ruta protegida por rol ✅',
+      usuario: req.usuario
+    });
+  }
+);
+
 module.exports = router;

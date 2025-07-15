@@ -1,8 +1,8 @@
 import { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import clienteAxios from '../api/clienteAxios';
-import { AuthContext } from '../context/AuthContext';
-import FormularioProducto from '../components/FormularioProducto';
+import clienteAxios from '../../api/clienteAxios';
+import { AuthContext } from '../../context/AuthContext';
+import FormularioProducto from '../../components/FormularioProducto';
 
 function EditarProducto() {
   const { id } = useParams();

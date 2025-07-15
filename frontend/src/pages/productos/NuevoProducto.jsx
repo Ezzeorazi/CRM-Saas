@@ -1,8 +1,8 @@
 import { useState, useContext } from 'react';
-import { AuthContext } from '../context/AuthContext';
-import clienteAxios from '../api/clienteAxios';
+import { AuthContext } from '../../context/AuthContext';
+import clienteAxios from '../../api/clienteAxios';
 import { useNavigate } from 'react-router-dom';
-import FormularioProducto from '../components/FormularioProducto';
+import FormularioProducto from '../../components/FormularioProducto';
 
 function NuevoProducto() {
   const { token } = useContext(AuthContext);

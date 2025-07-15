@@ -11,15 +11,19 @@ function DashboardLayout({ children }) {
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar para escritorio */}
       <aside className="hidden md:flex md:flex-col w-64 bg-gray-800 text-white p-4">
-        <h2 className="text-xl font-bold mb-4">CRM SaaS</h2>
+        <h2 className="text-xl font-bold mb-4">Nimbus CRM</h2>
         <p className="mb-6">Hola, {usuario?.nombre}</p>
         <nav className="flex flex-col gap-2">
           <Link to="/dashboard" className="hover:text-blue-300">Inicio</Link>
-          <Link to="/dashboard/usuarios" className="hover:text-blue-300">Usuarios</Link>
-          <Link to="/dashboard/inventario" className="hover:text-blue-300">Inventario</Link>
-          <Link to="/dashboard/productos" className="hover:text-blue-300">Productos</Link>
 
+          {(usuario?.rol === 'admin' || usuario?.rol === 'rrhh') && (
+            <Link to="/dashboard/usuarios" className="hover:text-blue-300">Usuarios</Link>
+          )}
+
+          <Link to="/dashboard/productos" className="hover:text-blue-300">Productos</Link>
+          <Link to="/dashboard/clientes" className="hover:text-blue-300">Clientes</Link>
         </nav>
+
         <button
           onClick={logout}
           className="mt-auto text-sm bg-red-600 px-3 py-1 rounded hover:bg-red-700"
@@ -41,7 +45,7 @@ function DashboardLayout({ children }) {
         <nav className="flex flex-col gap-2">
           <Link to="/dashboard" className="hover:text-blue-300" onClick={() => setSidebarOpen(false)}>Inicio</Link>
           <Link to="/dashboard/usuarios" className="hover:text-blue-300" onClick={() => setSidebarOpen(false)}>Usuarios</Link>
-          <Link to="/dashboard/inventario" className="hover:text-blue-300" onClick={() => setSidebarOpen(false)}>Inventario</Link>
+          <Link to="/dashboard/productos" className="hover:text-blue-300" onClick={() => setSidebarOpen(false)}>Productos</Link>
         </nav>
         <button
           onClick={() => { logout(); setSidebarOpen(false); }}
