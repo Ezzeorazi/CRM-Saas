@@ -70,6 +70,9 @@ frontend/
 - `/dashboard/productos`
 - `/dashboard/productos/nuevo`
 - `/dashboard/productos/editar/:id`
+- `/dashboard/ventas`
+- `/dashboard/ventas/nueva`
+- `/dashboard/ventas/editar/:id`
 
 ---
 
