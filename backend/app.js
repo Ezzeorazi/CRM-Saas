@@ -38,4 +38,7 @@ app.use('/api/productos', productoRoutes);
 const clientesRoutes = require('./routes/clientes');
 app.use('/api/clientes', clientesRoutes);
 
+const proveedoresRoutes = require('./routes/proveedores');
+app.use('/api/proveedores', proveedoresRoutes);
+
 module.exports = app;

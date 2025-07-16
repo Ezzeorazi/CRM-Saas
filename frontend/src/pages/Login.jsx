@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import Header from '../layout/Header';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -29,7 +30,9 @@ function Login() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-20 p-6 shadow-md border rounded-xl">
+    <>
+    <Header/>
+    <div className="max-w-md mx-auto m-10 p-6 shadow-md border rounded-xl">
       <h2 className="text-xl font-bold mb-4">Iniciar sesión</h2>
       {error && <p className="text-red-500 text-sm">{error}</p>}
 
@@ -54,7 +57,9 @@ function Login() {
           Iniciar sesión
         </button>
       </form>
+      
     </div>
+    </>
   );
 }
 

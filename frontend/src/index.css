@@ -3,3 +3,14 @@
 body {
   font-family: 'Montserrat', sans-serif;
 }
+/* index.css o main.css */
+html, body, #root {
+  height: 100%;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+

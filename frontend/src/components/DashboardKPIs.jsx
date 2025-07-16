@@ -1,26 +1,37 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { UserIcon, CubeIcon } from '@heroicons/react/24/solid';
+import { UserIcon, CubeIcon, UserGroupIcon, BuildingStorefrontIcon } from '@heroicons/react/24/solid';
 
 function DashboardKPIs() {
   const [usuarios, setUsuarios] = useState(0);
   const [productos, setProductos] = useState(0);
+  const [clientes, setClientes] = useState(0);
+  const [proveedores, setProveedores] = useState(0);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
 
     const fetchData = async () => {
       try {
-        const [resUsuarios, resProductos] = await Promise.all([
+        const [resUsuarios, resProductos, resClientes, resProveedores] = await Promise.all([
           axios.get(`${import.meta.env.VITE_API_URL}/usuarios`, {
             headers: { Authorization: `Bearer ${token}` }
           }),
           axios.get(`${import.meta.env.VITE_API_URL}/productos`, {
             headers: { Authorization: `Bearer ${token}` }
           }),
+          axios.get(`${import.meta.env.VITE_API_URL}/clientes`, {
+            headers: { Authorization: `Bearer ${token}` }
+          }),
+          axios.get(`${import.meta.env.VITE_API_URL}/proveedores`, {
+            headers: { Authorization: `Bearer ${token}` }
+          }),
         ]);
+
         setUsuarios(resUsuarios.data.length);
         setProductos(resProductos.data.length);
+        setClientes(resClientes.data.length);
+        setProveedores(resProveedores.data.length);
       } catch (error) {
         console.error('Error al obtener KPIs', error);
       }
@@ -42,9 +53,11 @@ function DashboardKPIs() {
   );
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       {kpiCard('Usuarios registrados', usuarios, UserIcon, 'bg-blue-500')}
       {kpiCard('Productos registrados', productos, CubeIcon, 'bg-green-500')}
+      {kpiCard('Clientes registrados', clientes, UserGroupIcon, 'bg-purple-500')}
+      {kpiCard('Proveedores registrados', proveedores, BuildingStorefrontIcon, 'bg-yellow-500')}
     </div>
   );
 }
