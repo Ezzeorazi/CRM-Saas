@@ -41,4 +41,7 @@ app.use('/api/clientes', clientesRoutes);
 const proveedoresRoutes = require('./routes/proveedores');
 app.use('/api/proveedores', proveedoresRoutes);
 
+const ventasRoutes = require('./routes/ventas');
+app.use('/api/ventas', ventasRoutes);
+
 module.exports = app;
