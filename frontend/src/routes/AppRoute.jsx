@@ -24,6 +24,12 @@ import NotFound from '../pages/NotFound';
 import Proveedores from '../pages/proveedores/Proveedores';
 import EditarProveedor from '../pages/proveedores/EditarProveedores';
 import NuevoProveedor from '../pages/proveedores/NuevoProveedor';
+import Ventas from '../pages/ventas/Ventas';
+import NuevaVenta from '../pages/ventas/NuevaVenta';
+import EditarVenta from '../pages/ventas/EditarVenta';
+import Presupuestos from '../pages/presupuestos/Presupuestos';
+import NuevoPresupuesto from '../pages/presupuestos/NuevoPresupuesto';
+import EditarPresupuesto from '../pages/presupuestos/EditarPresupuesto';
 
 function AppRoutes() {
   return (
@@ -173,6 +179,68 @@ function AppRoutes() {
           <PrivateRoute>
             <DashboardLayout>
               <EditarProveedor />
+            </DashboardLayout>
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/dashboard/ventas"
+        element={
+          <PrivateRoute>
+            <DashboardLayout>
+              <Ventas />
+            </DashboardLayout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/dashboard/ventas/nueva"
+        element={
+          <PrivateRoute>
+            <DashboardLayout>
+              <NuevaVenta />
+            </DashboardLayout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/dashboard/ventas/editar/:id"
+        element={
+          <PrivateRoute>
+            <DashboardLayout>
+              <EditarVenta />
+            </DashboardLayout>
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/dashboard/presupuestos"
+        element={
+          <PrivateRoute>
+            <DashboardLayout>
+              <Presupuestos />
+            </DashboardLayout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/dashboard/presupuestos/nuevo"
+        element={
+          <PrivateRoute>
+            <DashboardLayout>
+              <NuevoPresupuesto />
+            </DashboardLayout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/dashboard/presupuestos/editar/:id"
+        element={
+          <PrivateRoute>
+            <DashboardLayout>
+              <EditarPresupuesto />
             </DashboardLayout>
           </PrivateRoute>
         }
