@@ -77,6 +77,13 @@ JWT_SECRET=supersecreto123
 - `PUT /api/ventas/:id` – Editar venta
 - `DELETE /api/ventas/:id` – Eliminar venta
 
+### Presupuestos
+- `POST /api/presupuestos` – Crear presupuesto
+- `GET /api/presupuestos` – Listar presupuestos
+- `GET /api/presupuestos/:id` – Ver presupuesto
+- `PUT /api/presupuestos/:id` – Editar presupuesto
+- `DELETE /api/presupuestos/:id` – Eliminar presupuesto
+
 ---
 
 ## 🧪 Middleware incluidos
