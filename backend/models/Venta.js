@@ -9,6 +9,12 @@ const ventaSchema = new mongoose.Schema({
       precio: { type: Number, required: true }
     }
   ],
+  presupuesto: { type: mongoose.Schema.Types.ObjectId, ref: 'Presupuesto' },
+  estado: {
+    type: String,
+    enum: ['pendiente', 'procesando', 'completado', 'cancelado'],
+    default: 'pendiente'
+  },
   total: { type: Number, required: true },
   fecha: { type: Date, default: Date.now },
   notas: String

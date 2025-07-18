@@ -44,4 +44,13 @@ app.use('/api/proveedores', proveedoresRoutes);
 const ventasRoutes = require('./routes/ventas');
 app.use('/api/ventas', ventasRoutes);
 
+const presupuestosRoutes = require('./routes/presupuestos');
+app.use('/api/presupuestos', presupuestosRoutes);
+
+const facturasRoutes = require('./routes/facturas');
+app.use('/api/facturas', facturasRoutes);
+
+const pagosRoutes = require('./routes/pagos');
+app.use('/api/pagos', pagosRoutes);
+
 module.exports = app;
