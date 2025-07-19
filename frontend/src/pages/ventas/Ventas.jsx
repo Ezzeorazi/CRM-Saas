@@ -29,6 +29,7 @@ function Ventas() {
       });
       setVentas(prev => prev.filter(v => v._id !== id));
     } catch (error) {
+      console.error(error);
       alert('Error al eliminar venta');
     }
   };

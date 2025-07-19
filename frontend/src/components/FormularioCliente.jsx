@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 function FormularioCliente({ clienteInicial = {}, onSubmit }) {
   const [formulario, setFormulario] = useState({
@@ -48,7 +48,7 @@ function FormularioCliente({ clienteInicial = {}, onSubmit }) {
             name={input.name}
             placeholder={input.placeholder}
             required={input.required}
-            value={formData[input.name]}
+            value={formulario[input.name]}
             onChange={handleChange}
             className="border rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
@@ -59,7 +59,7 @@ function FormularioCliente({ clienteInicial = {}, onSubmit }) {
         <input
           type="checkbox"
           name="activo"
-          checked={formData.activo}
+          checked={formulario.activo}
           onChange={handleChange}
         />
         <span className="text-sm text-gray-700">Activo</span>

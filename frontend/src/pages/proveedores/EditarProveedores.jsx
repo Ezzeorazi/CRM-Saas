@@ -18,6 +18,7 @@ function EditarProveedor() {
         });
         setProveedor(data);
       } catch (error) {
+        console.error(error);
         alert('Error al cargar proveedor');
       }
     };
@@ -31,6 +32,7 @@ function EditarProveedor() {
       });
       navigate('/dashboard/proveedores');
     } catch (error) {
+      console.error(error);
       alert('Error al actualizar proveedor');
     }
   };
