@@ -10,6 +10,9 @@
 - Autenticación segura con JWT y control por roles
 - Gestión de usuarios y productos desde dashboard
 - API RESTful con protección de rutas
+- Gestión de clientes y proveedores
+- Módulo de ventas con presupuestos y facturación
+- Dashboard con KPIs
 - Interfaz limpia, responsiva y escalable (React + Tailwind)
 - Arquitectura modular preparada para crecimiento
 
@@ -55,12 +58,18 @@ crm-saas/
 - Registro/login con JWT
 - CRUD de usuarios
 - CRUD de productos
+- CRUD de clientes
+- CRUD de proveedores
+- Presupuestos, facturas y ventas
 - Protección por roles
 
 ### ✅ Frontend
 - Login protegido con contexto
 - Gestión de usuarios (alta, baja, edición)
 - Gestión de productos
+- Gestión de ventas con presupuestos y facturas
+- Gestión de clientes y proveedores
+- Panel de inicio con KPIs
 - Navegación responsiva y diseño limpio
 
 ### 🧩 En desarrollo
