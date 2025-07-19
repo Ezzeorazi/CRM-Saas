@@ -18,6 +18,7 @@ function EditarCliente() {
         });
         setCliente(data);
       } catch (error) {
+        console.error(error);
         alert('Error al cargar cliente');
       }
     };
@@ -31,6 +32,7 @@ function EditarCliente() {
       });
       navigate('/dashboard/clientes');
     } catch (error) {
+      console.error(error);
       alert('Error al actualizar cliente');
     }
   };

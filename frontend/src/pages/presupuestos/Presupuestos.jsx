@@ -29,6 +29,7 @@ function Presupuestos() {
       });
       setPresupuestos(prev => prev.filter(p => p._id !== id));
     } catch (error) {
+      console.error(error);
       alert('Error al eliminar presupuesto');
     }
   };

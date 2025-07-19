@@ -12,18 +12,18 @@ function Productos() {
     busqueda: '',
   });
 
-  const obtenerProductos = async () => {
-    try {
-      const { data } = await clienteAxios.get('/productos', {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      setProductos(data);
-    } catch (error) {
-      console.error('Error al obtener productos:', error.response?.data?.mensaje);
-    }
-  };
-
   useEffect(() => {
+    const obtenerProductos = async () => {
+      try {
+        const { data } = await clienteAxios.get('/productos', {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        setProductos(data);
+      } catch (error) {
+        console.error('Error al obtener productos:', error.response?.data?.mensaje);
+      }
+    };
+
     obtenerProductos();
   }, [token]);
 
@@ -46,7 +46,8 @@ function Productos() {
         headers: { Authorization: `Bearer ${token}` }
       });
       setProductos(prev => prev.filter(p => p._id !== id));
-    } catch (err) {
+    } catch (error) {
+      console.error(error);
       alert('Error al eliminar producto');
     }
   };

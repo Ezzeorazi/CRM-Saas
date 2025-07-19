@@ -15,6 +15,7 @@ function NuevoCliente() {
       });
       navigate('/dashboard/clientes');
     } catch (error) {
+      console.error(error);
       alert('Error al crear cliente');
     }
   };

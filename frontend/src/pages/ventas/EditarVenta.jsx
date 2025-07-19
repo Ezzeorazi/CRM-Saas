@@ -31,7 +31,8 @@ function EditarVenta() {
           cantidad: data.cantidad,
           precio: data.precio
         });
-      } catch (err) {
+      } catch (error) {
+        console.error(error);
         setError('Error al cargar la venta');
       }
     };
@@ -49,7 +50,8 @@ function EditarVenta() {
       });
       setMensaje('Venta actualizada');
       setTimeout(() => navigate('/dashboard/ventas'), 2000);
-    } catch (err) {
+    } catch (error) {
+      console.error(error);
       setError('Error al actualizar venta');
     }
   };

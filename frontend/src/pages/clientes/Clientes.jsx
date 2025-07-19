@@ -31,7 +31,8 @@ function Clientes() {
         headers: { Authorization: `Bearer ${token}` }
       });
       setClientes(prev => prev.filter(c => c._id !== id));
-    } catch (err) {
+    } catch (error) {
+      console.error(error);
       alert('Error al eliminar cliente');
     }
   };
