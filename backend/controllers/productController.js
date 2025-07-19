@@ -63,10 +63,34 @@ const eliminarProducto = async (req, res) => {
   }
 };
 
+ const importarProductos = async (req, res) => {
+  try {
+    const productos = req.body;
+
+    const insertables = productos.map(p => ({
+      nombre: p.nombre || '',
+      sku: p.sku || '',
+      precio: Number(p.precio) || 0,
+      stock: Number(p.stock) || 0,
+      categoria: p.categoria || '',
+      activo: p.activo === true || p.activo === 'true'
+    }));
+
+    const insertados = await Producto.insertMany(insertables, { ordered: false });
+    res.json({ mensaje: 'Importación exitosa', insertados: insertados.length });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ mensaje: 'Error al importar productos', error: error.message });
+  }
+};
+
+
+
 module.exports = {
   obtenerProductos,
   obtenerProducto,
   crearProducto,
   actualizarProducto,
-  eliminarProducto
+  eliminarProducto,
+  importarProductos
 };
