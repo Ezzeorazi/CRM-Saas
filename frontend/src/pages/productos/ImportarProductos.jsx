@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import * as XLSX from 'xlsx';
-import clienteAxios from '@/api/clienteAxios';
+import clienteAxios from '../../api/clienteAxios';
 
 function ImportarProductos() {
   const [productosExcel, setProductosExcel] = useState([]);
