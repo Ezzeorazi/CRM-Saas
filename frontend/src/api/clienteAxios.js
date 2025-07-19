@@ -1,13 +1,7 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import path from 'path';
+import axios from 'axios';
 
-export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
-  },
+const clienteAxios = axios.create({
+  baseURL: 'http://localhost:5000/api',
 });
 
+export default clienteAxios;
