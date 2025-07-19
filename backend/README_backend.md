@@ -5,9 +5,10 @@ CRM escalable en la nube para PYMEs, desarrollado con el stack **MERN** (MongoDB
 
 Este backend incluye:
 - Registro y login de usuarios con JWT
-- CRUD de usuarios y productos
+- CRUD de usuarios, productos, clientes y proveedores
 - Encriptación de contraseñas con bcrypt
 - Middleware de autenticación y autorización por roles
+- Módulo de ventas con presupuestos, facturación y pagos
 - Estructura modular escalable
 
 ---
@@ -28,9 +29,9 @@ Este backend incluye:
 ```
 backend/
 ├── config/              # Configuraciones generales
-├── controllers/         # Lógica de negocio (usuarios, productos)
+├── controllers/         # Lógica de negocio (usuarios, productos, ventas, clientes, proveedores)
 ├── middleware/          # Autenticación y roles
-├── models/              # Esquemas Mongoose (User, Product)
+├── models/              # Esquemas (User, Product, Cliente, Proveedor, Venta, Presupuesto, Factura, Pago)
 ├── routes/              # Rutas Express
 ├── utils/               # Funciones auxiliares
 ├── .env                 # Variables de entorno
@@ -69,6 +70,19 @@ JWT_SECRET=supersecreto123
 - `GET /api/productos/:id` – Ver producto
 - `PUT /api/productos/:id` – Editar producto
 - `DELETE /api/productos/:id` – Eliminar producto
+### Clientes
+- `POST /api/clientes` – Crear cliente
+- `GET /api/clientes` – Listar clientes
+- `GET /api/clientes/:id` – Ver cliente
+- `PUT /api/clientes/:id` – Editar cliente
+- `DELETE /api/clientes/:id` – Eliminar cliente
+
+### Proveedores
+- `POST /api/proveedores` – Crear proveedor
+- `GET /api/proveedores` – Listar proveedores
+- `GET /api/proveedores/:id` – Ver proveedor
+- `PUT /api/proveedores/:id` – Editar proveedor
+- `DELETE /api/proveedores/:id` – Eliminar proveedor
 
 ### Ventas
 - `POST /api/ventas` – Crear venta
@@ -76,6 +90,24 @@ JWT_SECRET=supersecreto123
 - `GET /api/ventas/:id` – Ver venta
 - `PUT /api/ventas/:id` – Editar venta
 - `DELETE /api/ventas/:id` – Eliminar venta
+- `POST /api/ventas/desde-presupuesto/:id` – Generar venta desde presupuesto
+### Presupuestos
+- `POST /api/presupuestos` – Crear presupuesto
+- `GET /api/presupuestos` – Listar presupuestos
+- `GET /api/presupuestos/:id` – Ver presupuesto
+- `PUT /api/presupuestos/:id` – Editar presupuesto
+- `DELETE /api/presupuestos/:id` – Eliminar presupuesto
+
+### Facturas
+- `POST /api/facturas` – Crear factura
+- `GET /api/facturas` – Listar facturas
+- `GET /api/facturas/:id` – Ver factura
+- `PUT /api/facturas/:id` – Editar factura
+- `DELETE /api/facturas/:id` – Eliminar factura
+
+### Pagos
+- `GET /api/pagos/factura/:facturaId` – Pagos de una factura
+- `POST /api/pagos` – Registrar pago
 
 ---
 
@@ -100,8 +132,10 @@ JWT_SECRET=supersecreto123
 ## ✅ Módulos activos
 
 - Autenticación y usuarios
-- Productos (stock básico)
-
+- Productos
+- Clientes y proveedores
+- Ventas, presupuestos y facturas
+- Pagos registrados
 ---
 
 ## 🧑‍💻 Autor
