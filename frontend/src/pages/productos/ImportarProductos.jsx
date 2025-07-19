@@ -1,39 +1,43 @@
 import { useState } from 'react';
 import * as XLSX from 'xlsx';
-import clienteAxios from '@/api/clienteAxios';
+import clienteAxios from '../../api/clienteAxios';
 
 function ImportarProductos() {
   const [productosExcel, setProductosExcel] = useState([]);
   const [mensaje, setMensaje] = useState('');
   const [loading, setLoading] = useState(false);
 
-const handleFileUpload = (e) => {
-  const file = e.target.files?.[0];
-  if (!file || !(file instanceof Blob)) {
-    setMensaje('❌ Archivo inválido. Seleccioná un archivo Excel válido.');
-    return;
-  }
-
-  const reader = new FileReader();
-  reader.onload = (event) => {
-    const data = new Uint8Array(event.target.result);
-    const workbook = XLSX.read(data, { type: 'array' });
-    const sheet = workbook.Sheets[workbook.SheetNames[0]];
-    const parsed = XLSX.utils.sheet_to_json(sheet);
-
-    if (parsed.length === 0) {
-      setMensaje('❌ El archivo está vacío o no tiene encabezados válidos.');
+  const handleFileUpload = (e) => {
+    const file = e.target.files?.[0];
+    if (!file || !(file instanceof Blob)) {
+      setMensaje('❌ Archivo inválido. Seleccioná un archivo Excel válido.');
       return;
     }
 
-    setProductosExcel(parsed);
-    setMensaje('');
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const data = new Uint8Array(event.target.result);
+      const workbook = XLSX.read(data, { type: 'array' });
+      const sheet = workbook.Sheets[workbook.SheetNames[0]];
+      const parsed = XLSX.utils.sheet_to_json(sheet);
+
+      if (parsed.length === 0) {
+        setMensaje('❌ El archivo está vacío o no tiene encabezados válidos.');
+        return;
+      }
+
+      setProductosExcel(parsed);
+      setMensaje('');
+    };
+    reader.readAsArrayBuffer(file);
   };
-  reader.readAsArrayBuffer(file);
-};
 
 
   const enviarProductos = async () => {
+    if (!token) {
+      setMensaje('❌ No estás autenticado. Iniciá sesión.');
+      return;
+    }
     setLoading(true);
     setMensaje('');
     try {
@@ -94,9 +98,8 @@ const handleFileUpload = (e) => {
           <button
             onClick={enviarProductos}
             disabled={loading}
-            className={`mt-4 px-6 py-2 rounded text-white font-medium ${
-              loading ? 'bg-blue-300 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'
-            }`}
+            className={`mt-4 px-6 py-2 rounded text-white font-medium ${loading ? 'bg-blue-300 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'
+              }`}
           >
             {loading ? 'Importando...' : '✅ Confirmar importación'}
           </button>
@@ -105,9 +108,8 @@ const handleFileUpload = (e) => {
 
       {mensaje && (
         <div
-          className={`mt-4 px-4 py-2 rounded text-sm ${
-            mensaje.startsWith('✅') ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
-          }`}
+          className={`mt-4 px-4 py-2 rounded text-sm ${mensaje.startsWith('✅') ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+            }`}
         >
           {mensaje}
         </div>
