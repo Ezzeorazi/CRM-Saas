@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import * as XLSX from 'xlsx';
 import clienteAxios from '../../api/clienteAxios';
 
 function ImportarProductos() {
+  const { token } = useContext(AuthContext);
   const [productosExcel, setProductosExcel] = useState([]);
   const [mensaje, setMensaje] = useState('');
   const [loading, setLoading] = useState(false);
@@ -41,7 +42,9 @@ function ImportarProductos() {
     setLoading(true);
     setMensaje('');
     try {
-      const { data } = await clienteAxios.post('/productos/importar', productosExcel);
+      const { data } = await clienteAxios.post('/productos/importar', productosExcel, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
       setMensaje(`✅ ${data.insertados} productos importados correctamente`);
       setProductosExcel([]);
     } catch (error) {
