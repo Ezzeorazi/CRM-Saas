@@ -15,6 +15,7 @@ function NuevoProveedor() {
       });
       navigate('/dashboard/proveedores');
     } catch (error) {
+      console.error(error);
       alert('Error al crear proveedor');
     }
   };

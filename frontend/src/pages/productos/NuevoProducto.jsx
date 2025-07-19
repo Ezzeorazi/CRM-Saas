@@ -20,13 +20,6 @@ function NuevoProducto() {
   const [mensaje, setMensaje] = useState('');
   const [error, setError] = useState('');
 
-  const handleChange = e => {
-    const { name, value, type, checked } = e.target;
-    setFormulario({
-      ...formulario,
-      [name]: type === 'checkbox' ? checked : value
-    });
-  };
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -41,8 +34,9 @@ function NuevoProducto() {
       });
       setMensaje('Producto creado correctamente');
       setTimeout(() => navigate('/dashboard/productos'), 2000);
-    } catch (err) {
-      setError(err.response?.data?.mensaje || 'Error al crear producto');
+    } catch (error) {
+      console.error(error);
+      setError(error.response?.data?.mensaje || 'Error al crear producto');
     }
   };
 

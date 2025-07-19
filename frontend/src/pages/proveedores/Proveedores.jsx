@@ -30,7 +30,8 @@ function Proveedores() {
         headers: { Authorization: `Bearer ${token}` }
       });
       setProveedores(prev => prev.filter(p => p._id !== id));
-    } catch (err) {
+    } catch (error) {
+      console.error(error);
       alert('Error al eliminar proveedor');
     }
   };

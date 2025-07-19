@@ -29,7 +29,8 @@ function NuevaVenta() {
       });
       setMensaje('Venta registrada correctamente');
       setTimeout(() => navigate('/dashboard/ventas'), 2000);
-    } catch (err) {
+    } catch (error) {
+      console.error(error);
       setError('Error al registrar venta');
     }
   };

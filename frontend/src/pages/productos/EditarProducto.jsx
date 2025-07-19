@@ -28,21 +28,14 @@ function EditarProducto() {
           headers: { Authorization: `Bearer ${token}` }
         });
         setFormulario(data);
-      } catch (err) {
+      } catch (error) {
+        console.error(error);
         setError('Error al cargar el producto');
       }
     };
 
     cargarProducto();
   }, [id, token]);
-
-  const handleChange = e => {
-    const { name, value, type, checked } = e.target;
-    setFormulario({
-      ...formulario,
-      [name]: type === 'checkbox' ? checked : value
-    });
-  };
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -55,7 +48,8 @@ function EditarProducto() {
       });
       setMensaje('Producto actualizado ✅');
       setTimeout(() => navigate('/dashboard/productos'), 1500);
-    } catch (err) {
+    } catch (error) {
+      console.error(error);
       setError('Error al actualizar');
     }
   };

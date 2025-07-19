@@ -28,7 +28,8 @@ function EditarUsuario() {
           email: data.email,
           rol: data.rol,
         });
-      } catch (err) {
+      } catch (error) {
+        console.error(error);
         setError('Error al cargar datos del usuario');
       }
     };
@@ -51,7 +52,8 @@ function EditarUsuario() {
       });
       setMensaje('✅ Usuario actualizado correctamente');
       setTimeout(() => navigate('/dashboard/usuarios'), 2000);
-    } catch (err) {
+    } catch (error) {
+      console.error(error);
       setError('❌ Error al actualizar usuario');
     }
   };

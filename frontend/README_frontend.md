@@ -52,16 +52,29 @@ frontend/
 - CRUD completo de productos (nombre, stock, precio)
 - Formularios con validación básica
 - Eliminación con confirmación
+### ✅ Clientes
+- Alta, edición y eliminación de clientes
+- Listado con filtro básico
+
+### ✅ Proveedores
+- Alta, edición y eliminación de proveedores
+- Listado ordenado por fecha
+
+### ✅ Ventas y facturación
+- Crear ventas con presupuestos y facturas
+- Registrar pagos
 
 ### ✅ Interfaz general
 - Dashboard responsivo con navegación lateral (mobile/desktop)
 - Diseño limpio con Tailwind
 - Placeholder y etiquetas para mejor experiencia UX
+- Panel con KPIs en la página principal
 
 ---
 
 ## 🧭 Rutas implementadas
 
+- `/` (landing page)
 - `/login`
 - `/dashboard`
 - `/dashboard/usuarios`
@@ -70,6 +83,15 @@ frontend/
 - `/dashboard/productos`
 - `/dashboard/productos/nuevo`
 - `/dashboard/productos/editar/:id`
+- `/dashboard/clientes`
+- `/dashboard/clientes/nuevo`
+- `/dashboard/clientes/editar/:id`
+- `/dashboard/proveedores`
+- `/dashboard/proveedores/nuevo`
+- `/dashboard/proveedores/editar/:id`
+- `/dashboard/presupuestos`
+- `/dashboard/presupuestos/nuevo`
+- `/dashboard/facturas`
 - `/dashboard/ventas`
 - `/dashboard/ventas/nueva`
 - `/dashboard/ventas/editar/:id`
