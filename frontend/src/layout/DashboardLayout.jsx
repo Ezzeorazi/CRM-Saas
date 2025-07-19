@@ -23,7 +23,8 @@ function DashboardLayout({ children }) {
           <Link to="/dashboard/productos" className="hover:text-blue-300">Productos</Link>
           <Link to="/dashboard/ventas" className="hover:text-blue-300">Ventas</Link>
           <Link to="/dashboard/clientes" className="hover:text-blue-300">Clientes</Link>
-          <Link to="/dashboard/proveedores" className="hover:text-blue-300">Proveedores</Link>
+          <Link to="/dashboard/facturas" className="hover:text-blue-300">Facturas</Link>
+          <Link to="/dashboard/presupuestos" className="hover:text-blue-300">Presupuestos</Link>
         </nav>
 
         <button

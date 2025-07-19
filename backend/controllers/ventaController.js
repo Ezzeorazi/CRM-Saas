@@ -53,10 +53,48 @@ const eliminarVenta = async (req, res) => {
   }
 };
 
+const Presupuesto = require('../models/Presupuesto');
+
+const crearVentaDesdePresupuesto = async (req, res) => {
+  try {
+    const presupuesto = await Presupuesto.findById(req.params.id)
+      .populate('cliente')
+      .populate('productos.producto');
+
+    if (!presupuesto) {
+      return res.status(404).json({ mensaje: 'Presupuesto no encontrado' });
+    }
+
+    if (presupuesto.estado !== 'aceptado') {
+      return res.status(400).json({ mensaje: 'Solo se pueden convertir presupuestos aceptados en ventas' });
+    }
+
+    const nuevaVenta = new Venta({
+      cliente: presupuesto.cliente._id,
+      productos: presupuesto.productos.map(p => ({
+        producto: p.producto?._id,
+        cantidad: p.cantidad,
+        precio: p.precio,
+        subtotal: p.subtotal
+      })),
+      total: presupuesto.total
+    });
+
+    const ventaGuardada = await nuevaVenta.save();
+
+    return res.status(201).json({ mensaje: 'Venta creada con éxito', venta: ventaGuardada });
+  } catch (error) {
+    console.error('Error al convertir presupuesto:', error);
+    return res.status(500).json({ mensaje: 'Error interno al convertir presupuesto en venta', error: error.message });
+  }
+};
+
+
 module.exports = {
   obtenerVentas,
   obtenerVenta,
   crearVenta,
   actualizarVenta,
-  eliminarVenta
+  eliminarVenta,
+  crearVentaDesdePresupuesto
 };

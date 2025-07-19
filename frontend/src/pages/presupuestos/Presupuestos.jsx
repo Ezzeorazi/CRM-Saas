@@ -33,6 +33,19 @@ function Presupuestos() {
     }
   };
 
+  const handleConvertirVenta = async (id) => {
+    if (!confirm('¿Convertir este presupuesto en venta?')) return;
+    try {
+      await clienteAxios.post(`/ventas/desde-presupuesto/${id}`, {}, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      alert('Venta creada con éxito');
+    } catch (error) {
+      console.error('Error al convertir presupuesto en venta', error);
+      alert('No se pudo crear la venta');
+    }
+  };
+
   return (
     <div>
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-3">
@@ -51,11 +64,23 @@ function Presupuestos() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {presupuestos.map(p => (
             <div key={p._id} className="bg-white rounded-2xl shadow p-5 space-y-2 hover:shadow-md transition">
-              <h3 className="text-lg font-semibold text-gray-800">{p.cliente?.nombre}</h3>
+              <h3 className="text-lg font-semibold text-gray-800">{p.cliente?.nombre || 'Cliente no definido'}</h3>
               <p className="text-sm text-gray-600">Estado: {p.estado}</p>
               <p className="text-sm text-gray-600">Total: ${p.total}</p>
+
               <div className="pt-3 flex justify-end gap-4 text-sm">
-                <button onClick={() => handleEliminar(p._id)} className="text-red-600 hover:underline">Eliminar</button>
+                <button onClick={() => handleEliminar(p._id)} className="text-red-600 hover:underline">
+                  Eliminar
+                </button>
+
+                {p.estado === 'aceptado' && (
+                  <button
+                    onClick={() => handleConvertirVenta(p._id)}
+                    className="text-green-600 hover:underline"
+                  >
+                    Convertir en Venta
+                  </button>
+                )}
               </div>
             </div>
           ))}

@@ -20,16 +20,32 @@ function NuevoPresupuesto() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const productos = datos.productos.map(p => ({ ...p, subtotal: p.cantidad * p.precio }));
+      const productos = datos.productos.map(p => ({
+        producto: p.producto,
+        nombre: p.nombre,
+        cantidad: p.cantidad,
+        precio: p.precio,
+        subtotal: p.cantidad * p.precio
+      }));
+
       const total = productos.reduce((acc, p) => acc + p.subtotal, 0);
-      await clienteAxios.post('/presupuestos', { ...datos, productos, total }, {
+
+      await clienteAxios.post('/presupuestos', {
+        cliente: datos.cliente,
+        productos,
+        total,
+        estado: 'pendiente'
+      }, {
         headers: { Authorization: `Bearer ${token}` }
       });
+
       navigate('/dashboard/presupuestos');
     } catch (error) {
       alert('Error al crear presupuesto');
+      console.error(error);
     }
   };
+
 
   return (
     <div className="max-w-lg mx-auto mt-10 bg-white p-6 shadow rounded">

@@ -17,4 +17,5 @@ router.post('/', verificarToken, permitirRoles('admin', 'ventas'), crearPresupue
 router.put('/:id', verificarToken, permitirRoles('admin', 'ventas'), actualizarPresupuesto);
 router.delete('/:id', verificarToken, permitirRoles('admin'), eliminarPresupuesto);
 
+
 module.exports = router;

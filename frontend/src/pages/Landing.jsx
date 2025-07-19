@@ -25,6 +25,32 @@ export default function Landing() {
         </div>
       </section>
 
+            {/* Fundador / Filosofía Personal */}
+      <section className="py-16 px-6 bg-gray-50 text-center">
+        <h2 className="text-3xl font-bold mb-6">Desde la experiencia real, para negocios reales</h2>
+        <div className="max-w-3xl mx-auto text-lg text-gray-700 space-y-4">
+          <p>
+            Soy Ezequiel. Técnico electromecánico, comunicador, y durante más de 10 años trabajé en empresas desde todos los ángulos:
+            administración, compras, ventas, contaduría, depósitos y hasta en planta como operario.
+          </p>
+          <p>
+            Por eso entiendo los verdaderos problemas que viven los equipos: las planillas eternas, el desorden en el stock, la falta de seguimiento a los clientes,
+            y la frustración de no tener un sistema que se adapte al trabajo diario.
+          </p>
+          <p>
+            Hoy como desarrollador independiente, creo herramientas prácticas para optimizar esos procesos. Con enfoque técnico, sí —pero también con empatía y visión de negocio.
+            El CRM que estás viendo no fue creado en un laboratorio: fue pensado para mejorar el trabajo real, de empresas reales, como la tuya.
+          </p>
+          <p>
+            Incluso estoy integrando Machine Learning para automatizar y anticipar tareas, sin que tengas que ser una gran empresa para acceder a esa tecnología.
+          </p>
+          <p className="font-semibold text-gray-900">
+            Este CRM no es solo software. Es una forma distinta de hacer que tu negocio funcione mejor, con alguien que estuvo en tu lugar.
+          </p>
+        </div>
+      </section>
+
+
       {/* Llamado a la acción */}
       <section id="contacto" className="py-16 px-6 bg-gray-100 text-center">
         <h2 className="text-3xl font-bold mb-4">¿Querés ver cómo funciona?</h2>
