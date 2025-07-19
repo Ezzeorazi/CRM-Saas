@@ -14,6 +14,7 @@ import EditarUsuario from '../pages/usuarios/EditarUsuario';
 import Productos from '../pages/productos/Productos';
 import NuevoProducto from '../pages/productos/NuevoProducto';
 import EditarProducto from '../pages/productos/EditarProducto';
+import ImportarProductos from '../pages/productos/ImportarProductos'
 
 import Clientes from '../pages/clientes/Clientes';
 import NuevoCliente from '../pages/clientes/NuevoCliente';
@@ -240,6 +241,16 @@ function AppRoutes() {
           <PrivateRoute>
             <DashboardLayout>
               <Facturas />
+            </DashboardLayout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/dashboard/productos/importar"
+        element={
+          <PrivateRoute>
+            <DashboardLayout>
+              <ImportarProductos />
             </DashboardLayout>
           </PrivateRoute>
         }

@@ -1,62 +1,43 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import * as XLSX from 'xlsx';
-import clienteAxios from '../../api/clienteAxios';
-import { AuthContext } from '../../context/AuthContext';
+import clienteAxios from '@/api/clienteAxios';
 
 function ImportarProductos() {
-  const { token } = useContext(AuthContext);
   const [productosExcel, setProductosExcel] = useState([]);
   const [mensaje, setMensaje] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleFileUpload = (e) => {
-    const file = e.target.files?.[0];
+const handleFileUpload = (e) => {
+  const file = e.target.files?.[0];
+  if (!file || !(file instanceof Blob)) {
+    setMensaje('❌ Archivo inválido. Seleccioná un archivo Excel válido.');
+    return;
+  }
 
-    if (!file || !(file instanceof Blob)) {
-      setMensaje('❌ Archivo inválido. Seleccioná un archivo Excel válido.');
+  const reader = new FileReader();
+  reader.onload = (event) => {
+    const data = new Uint8Array(event.target.result);
+    const workbook = XLSX.read(data, { type: 'array' });
+    const sheet = workbook.Sheets[workbook.SheetNames[0]];
+    const parsed = XLSX.utils.sheet_to_json(sheet);
+
+    if (parsed.length === 0) {
+      setMensaje('❌ El archivo está vacío o no tiene encabezados válidos.');
       return;
     }
 
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      try {
-        const data = new Uint8Array(event.target.result);
-        const workbook = XLSX.read(data, { type: 'array' });
-        const sheet = workbook.Sheets[workbook.SheetNames[0]];
-        const parsed = XLSX.utils.sheet_to_json(sheet);
-
-        if (parsed.length === 0) {
-          setMensaje('❌ El archivo está vacío o no tiene encabezados válidos.');
-          return;
-        }
-
-        setProductosExcel(parsed);
-        setMensaje('');
-      } catch (err) {
-        console.error(err);
-        setMensaje('❌ Error al procesar el archivo');
-      }
-    };
-
-    reader.readAsArrayBuffer(file);
+    setProductosExcel(parsed);
+    setMensaje('');
   };
+  reader.readAsArrayBuffer(file);
+};
+
 
   const enviarProductos = async () => {
-    if (!token) {
-      setMensaje('❌ No estás autenticado. Iniciá sesión.');
-      return;
-    }
-
     setLoading(true);
     setMensaje('');
-
     try {
-      const { data } = await clienteAxios.post('/productos/importar', productosExcel, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-
+      const { data } = await clienteAxios.post('/productos/importar', productosExcel);
       setMensaje(`✅ ${data.insertados} productos importados correctamente`);
       setProductosExcel([]);
     } catch (error) {

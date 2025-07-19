@@ -7,10 +7,12 @@ function DashboardLayout({ children }) {
   const { usuario, logout } = useContext(AuthContext);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+
   return (
     <div className="flex min-h-screen bg-gray-100">
       {/* Sidebar para escritorio */}
-      <aside className="hidden md:flex md:flex-col w-64 bg-gray-800 text-white p-4">
+      <aside className="hidden md:flex md:flex-col w-64 bg-gray-800 text-white p-4 transition-all duration-300">
         <h2 className="text-xl font-bold mb-4">Nimbus CRM</h2>
         <p className="mb-6">Hola, {usuario?.nombre}</p>
         <nav className="flex flex-col gap-2">
@@ -29,7 +31,7 @@ function DashboardLayout({ children }) {
 
         <button
           onClick={logout}
-          className="mt-auto text-sm bg-red-600 px-3 py-1 rounded hover:bg-red-700"
+          className="mt-auto text-sm bg-red-600 px-3 py-1 rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600"
         >
           Cerrar sesión
         </button>
@@ -37,23 +39,23 @@ function DashboardLayout({ children }) {
 
       {/* Sidebar para móviles */}
       {sidebarOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-20 md:hidden" onClick={() => setSidebarOpen(false)} />
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-20 md:hidden" onClick={toggleSidebar} />
       )}
       <aside className={`fixed z-30 top-0 left-0 h-full w-64 bg-gray-800 text-white p-4 transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform md:hidden`}>
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-bold">CRM SaaS</h2>
-          <XMarkIcon className="w-6 h-6 cursor-pointer" onClick={() => setSidebarOpen(false)} />
+          <XMarkIcon className="w-6 h-6 cursor-pointer" onClick={toggleSidebar} />
         </div>
         <p className="mb-6">Hola, {usuario?.nombre}</p>
         <nav className="flex flex-col gap-2">
-          <Link to="/dashboard" className="hover:text-blue-300" onClick={() => setSidebarOpen(false)}>Inicio</Link>
-          <Link to="/dashboard/usuarios" className="hover:text-blue-300" onClick={() => setSidebarOpen(false)}>Usuarios</Link>
-          <Link to="/dashboard/productos" className="hover:text-blue-300" onClick={() => setSidebarOpen(false)}>Productos</Link>
-          <Link to="/dashboard/ventas" className="hover:text-blue-300" onClick={() => setSidebarOpen(false)}>Ventas</Link>
+          <Link to="/dashboard" className="hover:text-blue-300" onClick={toggleSidebar}>Inicio</Link>
+          <Link to="/dashboard/usuarios" className="hover:text-blue-300" onClick={toggleSidebar}>Usuarios</Link>
+          <Link to="/dashboard/productos" className="hover:text-blue-300" onClick={toggleSidebar}>Productos</Link>
+          <Link to="/dashboard/ventas" className="hover:text-blue-300" onClick={toggleSidebar}>Ventas</Link>
         </nav>
         <button
           onClick={() => { logout(); setSidebarOpen(false); }}
-          className="mt-10 text-sm bg-red-600 px-3 py-1 rounded hover:bg-red-700"
+          className="mt-10 text-sm bg-red-600 px-3 py-1 rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600"
         >
           Cerrar sesión
         </button>
@@ -63,7 +65,7 @@ function DashboardLayout({ children }) {
       <div className="flex-1 flex flex-col">
         {/* Header */}
         <header className="bg-white shadow px-4 py-3 flex items-center justify-between md:hidden">
-          <Bars3Icon className="w-6 h-6 cursor-pointer" onClick={() => setSidebarOpen(true)} />
+          <Bars3Icon className="w-6 h-6 cursor-pointer" onClick={toggleSidebar} />
           <h1 className="text-lg font-bold">Panel</h1>
           <span />
         </header>
