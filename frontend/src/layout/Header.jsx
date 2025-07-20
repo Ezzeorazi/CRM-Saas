@@ -1,3 +1,5 @@
+// Encabezado común del dashboard.
+// Muestra la navegación y enlaces a distintas páginas.
 import { Link } from 'react-router-dom'
 import logo from '/imagenes/logo-nimbus.svg'
 

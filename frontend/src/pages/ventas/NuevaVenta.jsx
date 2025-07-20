@@ -1,3 +1,4 @@
+// Formulario para registrar una venta.
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import clienteAxios from '../../api/clienteAxios';

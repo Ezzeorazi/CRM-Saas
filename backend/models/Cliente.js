@@ -1,3 +1,4 @@
+// Modelo de cliente utilizado en clienteController
 const mongoose = require('mongoose');
 
 const clienteSchema = new mongoose.Schema({

@@ -1,3 +1,4 @@
+// Modelo de venta consultado en ventaController
 const mongoose = require('mongoose');
 
 const ventaSchema = new mongoose.Schema({

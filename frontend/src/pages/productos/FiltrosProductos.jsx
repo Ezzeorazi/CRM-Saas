@@ -1,3 +1,4 @@
+// Componente para filtrar productos en la tabla.
 function FiltrosProductos({ filtros, setFiltros }) {
   const handleChange = (e) => {
     const { name, value } = e.target;

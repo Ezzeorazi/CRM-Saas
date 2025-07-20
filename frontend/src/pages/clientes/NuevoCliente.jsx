@@ -1,3 +1,4 @@
+// Formulario para registrar un nuevo cliente.
 import FormularioCliente from '../../components/FormularioCliente';
 import clienteAxios from '../../api/clienteAxios';
 import { useNavigate } from 'react-router-dom';

@@ -1,3 +1,4 @@
+// Historial de ventas con enlaces para editar.
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import clienteAxios from '../../api/clienteAxios';

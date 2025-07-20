@@ -1,3 +1,4 @@
+// Formulario para crear usuarios.
 import { useState, useContext } from 'react';
 import clienteAxios from '../../api/clienteAxios';
 import { AuthContext } from '../../context/AuthContext';

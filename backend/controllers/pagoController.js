@@ -1,3 +1,4 @@
+// Controlador de pagos. Procesa los pagos recibidos desde las rutas
 const Pago = require('../models/Pago');
 const Factura = require('../models/Factura');
 

@@ -1,3 +1,4 @@
+// Controlador de usuarios. Gestiona el modelo User para el Dashboard
 const User = require('../models/User');
 
 // Obtener todos los usuarios

@@ -1,3 +1,4 @@
+// Formulario de presupuestos para vincular con ventas.
 // FormularioPresupuesto.jsx
 import { useEffect, useState } from 'react';
 import clienteAxios from '../api/clienteAxios';

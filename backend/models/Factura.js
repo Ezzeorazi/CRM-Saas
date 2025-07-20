@@ -1,3 +1,4 @@
+// Modelo de factura usado por facturaController
 const mongoose = require('mongoose');
 
 const facturaSchema = new mongoose.Schema({

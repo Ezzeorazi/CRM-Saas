@@ -1,3 +1,4 @@
+// Renderiza la aplicación React en el elemento root.
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';

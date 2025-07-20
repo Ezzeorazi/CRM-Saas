@@ -1,3 +1,4 @@
+// Controlador de ventas. Conecta Ventas.jsx con la base de datos
 const Venta = require('../models/Venta');
 
 const obtenerVentas = async (req, res) => {

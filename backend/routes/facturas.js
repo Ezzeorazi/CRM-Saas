@@ -1,3 +1,4 @@
+// Rutas de facturas. Usan facturaController.js y se muestran en Facturas.jsx
 const express = require('express');
 const router = express.Router();
 

@@ -1,3 +1,4 @@
+// Listado de productos consultado en /api/productos.
 import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import clienteAxios from '../../api/clienteAxios';

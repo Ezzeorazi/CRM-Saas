@@ -1,3 +1,4 @@
+// Rutas de pagos. Usan pagoController.js
 const express = require('express');
 const router = express.Router();
 

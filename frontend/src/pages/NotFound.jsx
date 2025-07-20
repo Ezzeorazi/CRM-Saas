@@ -1,3 +1,4 @@
+// Página mostrada cuando no existe la ruta.
 import { Link } from "react-router-dom";
 
 // src/pages/NotFound.jsx

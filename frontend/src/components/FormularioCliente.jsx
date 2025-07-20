@@ -1,3 +1,4 @@
+// Formulario para crear y editar clientes.
 import { useState } from 'react';
 
 function FormularioCliente({ clienteInicial = {}, onSubmit }) {

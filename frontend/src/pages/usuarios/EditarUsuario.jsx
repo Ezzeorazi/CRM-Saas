@@ -1,3 +1,4 @@
+// Edición de datos de un usuario.
 import { useContext, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import clienteAxios from '../../api/clienteAxios';
