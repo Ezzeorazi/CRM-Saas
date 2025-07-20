@@ -1,3 +1,4 @@
+// Modelo de presupuesto manejado en presupuestoController
 const mongoose = require('mongoose');
 
 const presupuestoSchema = new mongoose.Schema({

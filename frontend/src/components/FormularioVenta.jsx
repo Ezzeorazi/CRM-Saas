@@ -1,3 +1,4 @@
+// Formulario de ventas que utiliza clientes y productos.
 function FormularioVenta({ venta, setVenta, handleSubmit, esEdicion = false }) {
   const handleChange = (e) => {
     const { name, value } = e.target;

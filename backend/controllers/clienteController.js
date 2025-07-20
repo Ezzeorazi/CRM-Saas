@@ -1,3 +1,4 @@
+// Controlador de clientes. Maneja las operaciones con el modelo Cliente
 const Cliente = require('../models/Cliente');
 
 const obtenerClientes = async (req, res) => {

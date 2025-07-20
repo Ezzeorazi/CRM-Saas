@@ -1,3 +1,5 @@
+// Pie de página global.
+// Se muestra al final de todas las vistas.
 import { Link } from "react-router-dom";
 
 

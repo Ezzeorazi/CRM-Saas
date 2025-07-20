@@ -1,3 +1,4 @@
+// Modelo de proveedor para proveedorController
 // models/Proveedor.js
 const mongoose = require('mongoose');
 

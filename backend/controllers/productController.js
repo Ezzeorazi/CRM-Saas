@@ -1,3 +1,4 @@
+// Controlador de productos que interactúa con Product.js
 const Producto = require('../models/Product');
 
 // GET todos los productos

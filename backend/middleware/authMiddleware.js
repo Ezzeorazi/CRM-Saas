@@ -1,3 +1,5 @@
+// Middleware de autenticación.
+// Verifica el token recibido del frontend para autorizar las rutas protegidas.
 const jwt = require('jsonwebtoken');
 
 const verificarToken = (req, res, next) => {

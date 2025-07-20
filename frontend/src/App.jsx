@@ -1,3 +1,5 @@
+// Punto de entrada del frontend.
+// Configura las rutas y el layout general.
 // src/App.jsx
 import { BrowserRouter } from 'react-router-dom';
 import AppRoutes from './routes/AppRoute';

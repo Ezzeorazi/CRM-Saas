@@ -1,3 +1,4 @@
+// Controlador de facturas. Gestiona Factura.js y responde a las rutas de facturas
 const Factura = require('../models/Factura');
 const Pago = require('../models/Pago');
 

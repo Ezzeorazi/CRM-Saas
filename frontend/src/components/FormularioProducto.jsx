@@ -1,3 +1,4 @@
+// Formulario de productos que envía datos al backend.
 function FormularioProducto({ formulario, setFormulario, handleSubmit, esEdicion = false }) {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;

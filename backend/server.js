@@ -1,3 +1,4 @@
+// Inicia el servidor Express y escucha conexiones del frontend.
 // backend/server.js
 const app = require('./app');
 const dotenv = require('dotenv');

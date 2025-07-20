@@ -1,3 +1,4 @@
+// Módulo de facturas que obtiene datos de /api/facturas.
 import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import clienteAxios from '../../api/clienteAxios';

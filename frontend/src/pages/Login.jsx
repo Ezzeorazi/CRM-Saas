@@ -1,3 +1,4 @@
+// Vista de login. Envía las credenciales a authRoutes para obtener el token.
 import { useContext, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';

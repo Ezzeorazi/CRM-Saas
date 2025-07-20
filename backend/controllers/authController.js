@@ -1,3 +1,4 @@
+// Controlador de autenticación. Recibe datos de Login.jsx y genera el JWT
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 

@@ -1,3 +1,4 @@
+// Modelo de producto. Sirve a productController
 const mongoose = require('mongoose');
 
 const productoSchema = new mongoose.Schema({

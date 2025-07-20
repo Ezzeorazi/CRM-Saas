@@ -1,3 +1,4 @@
+// Ruta protegida que verifica el token mediante authMiddleware
 const express = require('express');
 const router = express.Router();
 const { verificarToken, permitirRoles } = require('../middleware/authMiddleware');

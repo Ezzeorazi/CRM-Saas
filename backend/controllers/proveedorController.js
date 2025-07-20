@@ -1,3 +1,4 @@
+// Controlador de proveedores usado por las rutas de proveedores
 const Proveedor = require('../models/Proveedor');
 
 const obtenerProveedores = async (req, res) => {

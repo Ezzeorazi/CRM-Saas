@@ -1,3 +1,5 @@
+// Estructura principal del panel.
+// Recibe los datos de AuthContext para mostrar el menú según el rol.
 import { useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { Link } from 'react-router-dom';

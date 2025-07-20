@@ -1,3 +1,4 @@
+// Modelo de pago empleado en pagoController
 const mongoose = require('mongoose');
 
 const pagoSchema = new mongoose.Schema({

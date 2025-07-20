@@ -1,3 +1,4 @@
+// Rutas de presupuestos. Usan presupuestoController.js y llegan a Presupuestos.jsx
 const express = require('express');
 const router = express.Router();
 

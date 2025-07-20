@@ -1,3 +1,4 @@
+// Rutas de productos. Usan productController.js y se consultan en productos del frontend
 // backend/routes/productoRoutes.js
 
 const express = require('express');

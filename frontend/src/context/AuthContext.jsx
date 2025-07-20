@@ -1,3 +1,5 @@
+// Contexto global de autenticación.
+// Guarda el usuario y el token recibidos desde authController.
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useEffect, useState } from 'react';
 
