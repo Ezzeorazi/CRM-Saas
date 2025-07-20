@@ -8,19 +8,10 @@ const {
   eliminarUsuario
 } = require('../controllers/userController');
 
-// GET /api/usuarios
 router.get('/', obtenerUsuarios);
-
-// POST /api/usuarios
 router.post('/', crearUsuario);
-
-// GET /api/usuarios/:id ✅
 router.get('/:id', obtenerUsuarioPorId);
-
-// PUT /api/usuarios/:id ✅
 router.put('/:id', actualizarUsuario);
-
-// DELETE /api/usuarios/:id ✅
 router.delete('/:id', eliminarUsuario);
 
 module.exports = router;

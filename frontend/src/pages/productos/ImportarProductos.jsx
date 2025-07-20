@@ -1,37 +1,64 @@
 import { useState } from 'react';
 import * as XLSX from 'xlsx';
 import clienteAxios from '../../api/clienteAxios';
+import { useAuth } from '../../context/AuthContext';
 
 function ImportarProductos() {
   const [productosExcel, setProductosExcel] = useState([]);
   const [mensaje, setMensaje] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const { token } = useAuth();
+
   const handleFileUpload = (e) => {
     const file = e.target.files?.[0];
     if (!file || !(file instanceof Blob)) {
       setMensaje('❌ Archivo inválido. Seleccioná un archivo Excel válido.');
+      setProductosExcel([]);
       return;
     }
 
     const reader = new FileReader();
+
     reader.onload = (event) => {
-      const data = new Uint8Array(event.target.result);
-      const workbook = XLSX.read(data, { type: 'array' });
-      const sheet = workbook.Sheets[workbook.SheetNames[0]];
-      const parsed = XLSX.utils.sheet_to_json(sheet);
+      try {
+        const data = new Uint8Array(event.target.result);
+        const workbook = XLSX.read(data, { type: 'array' });
+        const sheet = workbook.Sheets[workbook.SheetNames[0]];
+        const parsed = XLSX.utils.sheet_to_json(sheet);
 
-      if (parsed.length === 0) {
-        setMensaje('❌ El archivo está vacío o no tiene encabezados válidos.');
-        return;
+        if (parsed.length === 0) {
+          setMensaje('❌ El archivo está vacío o no tiene encabezados válidos.');
+          setProductosExcel([]);
+          return;
+        }
+
+        const columnasObligatorias = ['nombre', 'sku', 'precio', 'stock', 'categoria', 'activo'];
+        const columnasArchivo = Object.keys(parsed[0]);
+
+        const columnasFaltantes = columnasObligatorias.filter(col => !columnasArchivo.includes(col));
+
+        if (columnasFaltantes.length > 0) {
+          setMensaje(`❌ Faltan columnas obligatorias: ${columnasFaltantes.join(', ')}`);
+          setProductosExcel([]);
+          return;
+        }
+
+        setProductosExcel(parsed);
+        setMensaje('');
+      } catch (error) {
+        setMensaje('❌ Error al procesar el archivo Excel.');
+        setProductosExcel([]);
       }
-
-      setProductosExcel(parsed);
-      setMensaje('');
     };
+
+    reader.onerror = () => {
+      setMensaje('❌ Error al leer el archivo.');
+      setProductosExcel([]);
+    };
+
     reader.readAsArrayBuffer(file);
   };
-
 
   const enviarProductos = async () => {
     if (!token) {
@@ -98,8 +125,7 @@ function ImportarProductos() {
           <button
             onClick={enviarProductos}
             disabled={loading}
-            className={`mt-4 px-6 py-2 rounded text-white font-medium ${loading ? 'bg-blue-300 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'
-              }`}
+            className={`mt-4 px-6 py-2 rounded text-white font-medium ${loading ? 'bg-blue-300 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}
           >
             {loading ? 'Importando...' : '✅ Confirmar importación'}
           </button>
@@ -107,10 +133,7 @@ function ImportarProductos() {
       )}
 
       {mensaje && (
-        <div
-          className={`mt-4 px-4 py-2 rounded text-sm ${mensaje.startsWith('✅') ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
-            }`}
-        >
+        <div className={`mt-4 px-4 py-2 rounded text-sm ${mensaje.startsWith('✅') ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
           {mensaje}
         </div>
       )}

@@ -42,7 +42,10 @@ crm-saas/
 │   ├── middleware/
 │   └── ...
 ├── frontend/             # Interfaz React + Vite + Tailwind
+│   ├── routes/
+│   ├── layout/
 │   ├── pages/
+│   ├── api/
 │   ├── components/
 │   └── ...
 ├── README.md             # Este archivo

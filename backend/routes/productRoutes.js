@@ -1,5 +1,3 @@
-// backend/routes/productoRoutes.js
-
 const express = require('express');
 const router = express.Router();
 
@@ -14,7 +12,6 @@ const {
 
 const { verificarToken, permitirRoles } = require('../middleware/authMiddleware');
 
-// ✅ Asegurate de NO poner paréntesis en los middlewares
 router.get('/', verificarToken, obtenerProductos);
 router.get('/:id', verificarToken, obtenerProducto);
 router.post('/', verificarToken, permitirRoles('admin', 'inventario'), crearProducto);
