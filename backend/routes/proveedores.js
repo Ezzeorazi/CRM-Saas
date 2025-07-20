@@ -1,3 +1,4 @@
+// Rutas de proveedores. Usan proveedorController.js y se manejan en las vistas de proveedores
 const express = require('express');
 const router = express.Router();
 const {

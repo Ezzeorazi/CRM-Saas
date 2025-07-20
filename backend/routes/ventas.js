@@ -1,3 +1,4 @@
+// Rutas de ventas. Usan ventaController.js y se muestran en Ventas.jsx
 const express = require('express');
 const router = express.Router();
 

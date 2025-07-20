@@ -1,3 +1,4 @@
+// Página de bienvenida antes de iniciar sesión.
 import Header from '../layout/Header';
 
 export default function Landing() {

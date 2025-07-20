@@ -1,3 +1,4 @@
+// Pantalla para editar datos de un proveedor.
 import { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import clienteAxios from '../../api/clienteAxios';

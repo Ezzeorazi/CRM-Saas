@@ -1,3 +1,4 @@
+// Rutas de clientes. Llaman a clienteController.js y se consumen en las páginas de clientes
 const express = require('express');
 const router = express.Router();
 const Cliente = require('../models/Cliente');

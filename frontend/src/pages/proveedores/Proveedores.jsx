@@ -1,3 +1,4 @@
+// Listado de proveedores obtenido desde /api/proveedores.
 import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import clienteAxios from '../../api/clienteAxios';

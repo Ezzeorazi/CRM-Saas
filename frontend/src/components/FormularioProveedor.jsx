@@ -1,3 +1,4 @@
+// Formulario de proveedores gestionado desde Proveedores.jsx.
 import { useState } from 'react';
 
 function FormularioProveedor({ onSubmit, proveedorInicial = {} }) {

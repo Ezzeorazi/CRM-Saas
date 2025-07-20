@@ -1,3 +1,5 @@
+// App principal de Express.
+// Conecta con MongoDB y registra las rutas para enviar las peticiones a los controladores.
 // backend/app.js
 require('dotenv').config(); // 👈 ESTA LÍNEA ES CLAVE
 const express = require('express');

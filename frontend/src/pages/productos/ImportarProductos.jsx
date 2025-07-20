@@ -1,3 +1,4 @@
+// Importa productos desde un archivo XLSX.
 import { useState } from 'react';
 import * as XLSX from 'xlsx';
 import clienteAxios from '../../api/clienteAxios';

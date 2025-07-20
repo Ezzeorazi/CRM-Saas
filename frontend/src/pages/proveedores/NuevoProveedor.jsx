@@ -1,3 +1,4 @@
+// Vista para registrar un nuevo proveedor.
 import FormularioProveedor from '../../components/FormularioProveedor';
 import clienteAxios from '../../api/clienteAxios';
 import { useNavigate } from 'react-router-dom';

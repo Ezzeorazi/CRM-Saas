@@ -1,3 +1,4 @@
+// Define todas las rutas de la aplicación para React Router.
 // src/routes/AppRoutes.jsx
 import { Routes, Route } from 'react-router-dom';
 import PrivateRoute from '../components/PrivateRoute';

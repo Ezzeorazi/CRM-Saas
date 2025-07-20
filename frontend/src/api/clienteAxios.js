@@ -1,3 +1,5 @@
+// Configuración de Axios.
+// Adjunta el token al enviar solicitudes al backend.
 import axios from 'axios';
 
 const clienteAxios = axios.create({

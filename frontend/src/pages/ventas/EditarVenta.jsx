@@ -1,3 +1,4 @@
+// Modificación de una venta existente.
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import clienteAxios from '../../api/clienteAxios';

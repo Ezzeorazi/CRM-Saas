@@ -1,3 +1,5 @@
+// Muestra los indicadores principales del panel.
+// Obtiene datos del backend para resumir ventas y clientes.
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { UserIcon, CubeIcon, UserGroupIcon, BuildingStorefrontIcon } from '@heroicons/react/24/solid';

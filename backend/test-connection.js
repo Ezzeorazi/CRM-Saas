@@ -1,3 +1,4 @@
+// Script para probar la conexión a MongoDB en desarrollo
 const mongoose = require('mongoose');
 require('dotenv').config();
 

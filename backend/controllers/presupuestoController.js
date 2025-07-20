@@ -1,3 +1,4 @@
+// Controlador de presupuestos para Presupuestos.jsx
 const Presupuesto = require('../models/Presupuesto');
 
 const obtenerPresupuestos = async (req, res) => {

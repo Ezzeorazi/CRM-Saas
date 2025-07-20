@@ -1,3 +1,5 @@
+// Protege rutas según los roles permitidos.
+// Usa la información del usuario en AuthContext.
 import { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 function Presupuestos() {
   const { token } = useContext(AuthContext);
   const [presupuestos, setPresupuestos] = useState([]);
+  const [presupuestoActivo, setPresupuestoActivo] = useState(null);
 
   useEffect(() => {
     const obtener = async () => {
@@ -34,6 +35,19 @@ function Presupuestos() {
     }
   };
 
+  const handleAceptarPresupuesto = async (id) => {
+    try {
+      await clienteAxios.put(`/presupuestos/${id}`, { estado: 'aceptado' }, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      setPresupuestos(prev => prev.map(p =>
+        p._id === id ? { ...p, estado: 'aceptado' } : p
+      ));
+    } catch (err) {
+      alert('Error al aceptar presupuesto');
+    }
+  };
+
   const handleConvertirVenta = async (id) => {
     if (!confirm('¿Convertir este presupuesto en venta?')) return;
     try {
@@ -45,6 +59,10 @@ function Presupuestos() {
       console.error('Error al convertir presupuesto en venta', error);
       alert('No se pudo crear la venta');
     }
+  };
+
+  const togglePresupuesto = (id) => {
+    setPresupuestoActivo(presupuestoActivo === id ? null : id);
   };
 
   return (
@@ -65,16 +83,41 @@ function Presupuestos() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {presupuestos.map(p => (
             <div key={p._id} className="bg-white rounded-2xl shadow p-5 space-y-2 hover:shadow-md transition">
-              <h3 className="text-lg font-semibold text-gray-800">{p.cliente?.nombre || 'Cliente no definido'}</h3>
-              <p className="text-sm text-gray-600">Estado: {p.estado}</p>
-              <p className="text-sm text-gray-600">Total: ${p.total}</p>
+              <div
+                className="cursor-pointer"
+                onClick={() => togglePresupuesto(p._id)}
+              >
+                <h3 className="text-lg font-semibold text-gray-800">{p.cliente?.nombre || 'Cliente no definido'}</h3>
+                <p className="text-sm text-gray-600">Estado: {p.estado}</p>
+                <p className="text-sm text-gray-600">Total: ${p.total}</p>
+              </div>
 
-              <div className="pt-3 flex justify-end gap-4 text-sm">
+              {presupuestoActivo === p._id && (
+                <div className="mt-4 border-t pt-2 text-sm text-gray-700 space-y-1">
+                  {p.productos?.map((prod, idx) => (
+                    <div key={idx} className="flex justify-between">
+                      <span>{prod.nombre} x {prod.cantidad}</span>
+                      <span>${prod.subtotal?.toFixed(2)}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <div className="pt-3 flex justify-between flex-wrap gap-4 text-sm">
                 <button onClick={() => handleEliminar(p._id)} className="text-red-600 hover:underline">
                   Eliminar
                 </button>
 
-                {p.estado === 'aceptado' && (
+                {p.estado?.trim().toLowerCase() === 'pendiente' && (
+                  <button
+                    onClick={() => handleAceptarPresupuesto(p._id)}
+                    className="text-blue-600 hover:underline"
+                  >
+                    Aceptar Presupuesto
+                  </button>
+                )}
+
+                {p.estado?.trim().toLowerCase() === 'aceptado' && (
                   <button
                     onClick={() => handleConvertirVenta(p._id)}
                     className="text-green-600 hover:underline"
