@@ -70,6 +70,7 @@ JWT_SECRET=supersecreto123
 - `GET /api/productos/:id` – Ver producto
 - `PUT /api/productos/:id` – Editar producto
 - `DELETE /api/productos/:id` – Eliminar producto
+- `POST /api/productos/importar` – Importar productos desde Excel
 ### Clientes
 - `POST /api/clientes` – Crear cliente
 - `GET /api/clientes` – Listar clientes
@@ -133,6 +134,7 @@ JWT_SECRET=supersecreto123
 
 - Autenticación y usuarios
 - Productos
+- Importación masiva de productos vía Excel
 - Clientes y proveedores
 - Ventas, presupuestos y facturas
 - Pagos registrados

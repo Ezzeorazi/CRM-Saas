@@ -52,6 +52,7 @@ frontend/
 - CRUD completo de productos (nombre, stock, precio)
 - Formularios con validación básica
 - Eliminación con confirmación
+- Importar productos desde Excel
 ### ✅ Clientes
 - Alta, edición y eliminación de clientes
 - Listado con filtro básico
@@ -83,6 +84,7 @@ frontend/
 - `/dashboard/productos`
 - `/dashboard/productos/nuevo`
 - `/dashboard/productos/editar/:id`
+- `/dashboard/productos/importar`
 - `/dashboard/clientes`
 - `/dashboard/clientes/nuevo`
 - `/dashboard/clientes/editar/:id`

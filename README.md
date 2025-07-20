@@ -9,6 +9,7 @@
 
 - Autenticación segura con JWT y control por roles
 - Gestión de usuarios y productos desde dashboard
+- Importación masiva de productos desde Excel
 - API RESTful con protección de rutas
 - Gestión de clientes y proveedores
 - Módulo de ventas con presupuestos y facturación
@@ -58,6 +59,7 @@ crm-saas/
 - Registro/login con JWT
 - CRUD de usuarios
 - CRUD de productos
+- Importación de productos por Excel
 - CRUD de clientes
 - CRUD de proveedores
 - Presupuestos, facturas y ventas
@@ -67,6 +69,7 @@ crm-saas/
 - Login protegido con contexto
 - Gestión de usuarios (alta, baja, edición)
 - Gestión de productos
+- Importar productos desde Excel
 - Gestión de ventas con presupuestos y facturas
 - Gestión de clientes y proveedores
 - Panel de inicio con KPIs
