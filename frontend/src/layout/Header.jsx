@@ -25,12 +25,12 @@ export default function Header() {
           >
             Iniciar Sesión
           </Link>
-          <a
-            href="#contacto"
+          <Link
+            to="/demo"
             className="bg-blue-800 text-white px-6 py-3 rounded shadow hover:bg-blue-900"
           >
             Solicitar Demo
-          </a>
+          </Link>
         </div>
       </header>
   )
