@@ -37,6 +37,9 @@ app.use('/api/protegida', protegidaRoutes);
 const productoRoutes = require('./routes/productRoutes');
 app.use('/api/productos', productoRoutes);
 
+const empresasRoutes = require('./routes/empresas');
+app.use('/api/empresas', empresasRoutes);
+
 const clientesRoutes = require('./routes/clientes');
 app.use('/api/clientes', clientesRoutes);
 
