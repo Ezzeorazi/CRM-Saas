@@ -1,5 +1,6 @@
 // Página de bienvenida antes de iniciar sesión.
 import Header from '../layout/Header';
+import FaqSection from '../components/FaqSection';
 
 export default function Landing() {
   return (
@@ -49,8 +50,10 @@ export default function Landing() {
             Este CRM no es solo software. Es una forma distinta de hacer que tu negocio funcione mejor, con alguien que estuvo en tu lugar.
           </p>
         </div>
-      </section>
+        </section>
 
+      {/* Preguntas frecuentes */}
+      <FaqSection />
 
       {/* Llamado a la acción */}
       <section id="contacto" className="py-16 px-6 bg-gray-100 text-center">
