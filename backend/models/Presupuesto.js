@@ -2,6 +2,11 @@
 const mongoose = require('mongoose');
 
 const presupuestoSchema = new mongoose.Schema({
+  empresaId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Empresa',
+    required: true
+  },
   cliente: { type: mongoose.Schema.Types.ObjectId, ref: 'Cliente', required: true },
   productos: [
     {

@@ -3,7 +3,7 @@ const Venta = require('../models/Venta');
 
 const obtenerVentas = async (req, res) => {
   try {
-    const ventas = await Venta.find()
+    const ventas = await Venta.find({ empresaId: req.empresaId })
       .populate('cliente')
       .populate('productos.producto');
     res.json(ventas);
@@ -14,7 +14,7 @@ const obtenerVentas = async (req, res) => {
 
 const obtenerVenta = async (req, res) => {
   try {
-    const venta = await Venta.findById(req.params.id)
+    const venta = await Venta.findOne({ _id: req.params.id, empresaId: req.empresaId })
       .populate('cliente')
       .populate('productos.producto');
     if (!venta) return res.status(404).json({ mensaje: 'Venta no encontrada' });
@@ -26,7 +26,7 @@ const obtenerVenta = async (req, res) => {
 
 const crearVenta = async (req, res) => {
   try {
-    const venta = new Venta(req.body);
+    const venta = new Venta({ ...req.body, empresaId: req.empresaId });
     const ventaGuardada = await venta.save();
     res.status(201).json(ventaGuardada);
   } catch (error) {
@@ -36,7 +36,7 @@ const crearVenta = async (req, res) => {
 
 const actualizarVenta = async (req, res) => {
   try {
-    const ventaActualizada = await Venta.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const ventaActualizada = await Venta.findOneAndUpdate({ _id: req.params.id, empresaId: req.empresaId }, req.body, { new: true });
     if (!ventaActualizada) return res.status(404).json({ mensaje: 'Venta no encontrada' });
     res.json(ventaActualizada);
   } catch (error) {
@@ -46,7 +46,7 @@ const actualizarVenta = async (req, res) => {
 
 const eliminarVenta = async (req, res) => {
   try {
-    const ventaEliminada = await Venta.findByIdAndDelete(req.params.id);
+    const ventaEliminada = await Venta.findOneAndDelete({ _id: req.params.id, empresaId: req.empresaId });
     if (!ventaEliminada) return res.status(404).json({ mensaje: 'Venta no encontrada' });
     res.json({ mensaje: 'Venta eliminada' });
   } catch (error) {
@@ -58,7 +58,7 @@ const Presupuesto = require('../models/Presupuesto');
 
 const crearVentaDesdePresupuesto = async (req, res) => {
   try {
-    const presupuesto = await Presupuesto.findById(req.params.id)
+    const presupuesto = await Presupuesto.findOne({ _id: req.params.id, empresaId: req.empresaId })
       .populate('cliente')
       .populate('productos.producto');
 
@@ -71,6 +71,7 @@ const crearVentaDesdePresupuesto = async (req, res) => {
     }
 
     const nuevaVenta = new Venta({
+      empresaId: req.empresaId,
       cliente: presupuesto.cliente._id,
       productos: presupuesto.productos.map(p => ({
         producto: p.producto?._id,
