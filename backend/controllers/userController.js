@@ -4,7 +4,7 @@ const User = require('../models/User');
 // Obtener todos los usuarios
 const obtenerUsuarios = async (req, res) => {
   try {
-    const usuarios = await User.find().select('-contraseña');
+    const usuarios = await User.find({ empresaId: req.empresaId }).select('-contraseña');
     res.json(usuarios);
   } catch (error) {
     res.status(500).json({ mensaje: 'Error al obtener usuarios', error: error.message });
@@ -21,7 +21,7 @@ const crearUsuario = async (req, res) => {
       return res.status(400).json({ mensaje: 'El usuario ya existe' });
     }
 
-    const nuevoUsuario = new User({ nombre, email, contraseña, rol });
+    const nuevoUsuario = new User({ nombre, email, contraseña, rol, empresaId: req.empresaId });
     await nuevoUsuario.save();
 
     res.status(201).json(nuevoUsuario);
@@ -33,7 +33,7 @@ const crearUsuario = async (req, res) => {
 // Obtener un usuario por ID
 const obtenerUsuarioPorId = async (req, res) => {
   try {
-    const usuario = await User.findById(req.params.id).select('-contraseña');
+    const usuario = await User.findOne({ _id: req.params.id, empresaId: req.empresaId }).select('-contraseña');
     if (!usuario) {
       return res.status(404).json({ mensaje: 'Usuario no encontrado' });
     }
@@ -46,7 +46,7 @@ const obtenerUsuarioPorId = async (req, res) => {
 // Actualizar un usuario
 const actualizarUsuario = async (req, res) => {
   try {
-    const usuarioActualizado = await User.findByIdAndUpdate(req.params.id, req.body, {
+    const usuarioActualizado = await User.findOneAndUpdate({ _id: req.params.id, empresaId: req.empresaId }, req.body, {
       new: true,
       runValidators: true,
     }).select('-contraseña');
@@ -64,7 +64,7 @@ const actualizarUsuario = async (req, res) => {
 // Eliminar un usuario
 const eliminarUsuario = async (req, res) => {
   try {
-    const usuarioEliminado = await User.findByIdAndDelete(req.params.id);
+    const usuarioEliminado = await User.findOneAndDelete({ _id: req.params.id, empresaId: req.empresaId });
     if (!usuarioEliminado) {
       return res.status(404).json({ mensaje: 'Usuario no encontrado' });
     }
