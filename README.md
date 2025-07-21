@@ -16,6 +16,7 @@
 - Dashboard con KPIs
 - Interfaz limpia, responsiva y escalable (React + Tailwind)
 - Arquitectura modular preparada para crecimiento
+- Soporte multi-tenant con modelo `Empresa` y datos aislados por `empresaId`
 
 ---
 
@@ -67,6 +68,7 @@ crm-saas/
 - CRUD de proveedores
 - Presupuestos, facturas y ventas
 - Protección por roles
+- Flujo multi-tenant: usuarios y datos aislados por empresa
 
 ### ✅ Frontend
 - Login protegido con contexto
@@ -77,6 +79,7 @@ crm-saas/
 - Gestión de clientes y proveedores
 - Panel de inicio con KPIs
 - Navegación responsiva y diseño limpio
+- Formulario “Solicitar Demo” para crear una empresa y admin inicial
 
 ### 🧩 En desarrollo
 - Módulo de inventario avanzado

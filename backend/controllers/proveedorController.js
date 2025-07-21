@@ -2,13 +2,13 @@
 const Proveedor = require('../models/Proveedor');
 
 const obtenerProveedores = async (req, res) => {
-  const proveedores = await Proveedor.find().sort({ createdAt: -1 });
+  const proveedores = await Proveedor.find({ empresaId: req.empresaId }).sort({ createdAt: -1 });
   res.json(proveedores);
 };
 
 const crearProveedor = async (req, res) => {
   try {
-    const proveedor = new Proveedor(req.body);
+    const proveedor = new Proveedor({ ...req.body, empresaId: req.empresaId });
     const proveedorGuardado = await proveedor.save();
     res.status(201).json(proveedorGuardado);
   } catch (error) {
@@ -18,7 +18,7 @@ const crearProveedor = async (req, res) => {
 
 const obtenerProveedor = async (req, res) => {
   try {
-    const proveedor = await Proveedor.findById(req.params.id);
+    const proveedor = await Proveedor.findOne({ _id: req.params.id, empresaId: req.empresaId });
     if (!proveedor) return res.status(404).json({ mensaje: 'Proveedor no encontrado' });
     res.json(proveedor);
   } catch (error) {
@@ -28,7 +28,7 @@ const obtenerProveedor = async (req, res) => {
 
 const actualizarProveedor = async (req, res) => {
   try {
-    const proveedorActualizado = await Proveedor.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const proveedorActualizado = await Proveedor.findOneAndUpdate({ _id: req.params.id, empresaId: req.empresaId }, req.body, { new: true });
     res.json(proveedorActualizado);
   } catch (error) {
     res.status(500).json({ mensaje: 'Error al actualizar proveedor', error: error.message });
@@ -37,7 +37,7 @@ const actualizarProveedor = async (req, res) => {
 
 const eliminarProveedor = async (req, res) => {
   try {
-    await Proveedor.findByIdAndDelete(req.params.id);
+    await Proveedor.findOneAndDelete({ _id: req.params.id, empresaId: req.empresaId });
     res.json({ mensaje: 'Proveedor eliminado' });
   } catch (error) {
     res.status(500).json({ mensaje: 'Error al eliminar proveedor', error: error.message });

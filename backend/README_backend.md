@@ -11,6 +11,7 @@ Este backend incluye:
 - Módulo de ventas con presupuestos, facturación y pagos
 - Estructura modular escalable
 
+- Arquitectura multi-tenant con modelo `Empresa` y filtros por `empresaId`
 ---
 
 ## 🚀 Tecnologías utilizadas
@@ -31,7 +32,7 @@ backend/
 ├── config/              # Configuraciones generales
 ├── controllers/         # Lógica de negocio (usuarios, productos, ventas, clientes, proveedores)
 ├── middleware/          # Autenticación y roles
-├── models/              # Esquemas (User, Product, Cliente, Proveedor, Venta, Presupuesto, Factura, Pago)
+├── models/              # Esquemas (User, Product, Cliente, Proveedor, Venta, Presupuesto, Factura, Pago, Empresa)
 ├── routes/              # Rutas Express
 ├── utils/               # Funciones auxiliares
 ├── .env                 # Variables de entorno
@@ -51,10 +52,18 @@ JWT_SECRET=supersecreto123
 ```
 
 ---
+## Flujo multi-tenant
+- Cada usuario pertenece a una empresa identificada por `empresaId`.
+- Al iniciar sesión se genera un JWT con `empresaId`.
+- El middleware establece `req.empresaId` para filtrar datos.
 
 ## 📌 Endpoints disponibles
 
+### Empresas
+- `POST /api/empresas` – Registrar empresa y usuario administrador (demo)
+
 ### Usuarios
+
 - `POST /api/usuarios` – Crear usuario
 - `GET /api/usuarios` – Listar usuarios (protegido)
 - `GET /api/usuarios/:id` – Ver un usuario
@@ -114,6 +123,8 @@ JWT_SECRET=supersecreto123
 
 ## 🧪 Middleware incluidos
 
+- El token JWT incluye `empresaId` del usuario para filtrar datos
+- Middleware agrega `req.empresaId` para usar en controladores
 - `verificarToken`: verifica si el token JWT es válido
 - `permitirRoles(...roles)`: limita acceso según el rol del usuario
 
@@ -134,6 +145,7 @@ JWT_SECRET=supersecreto123
 
 - Autenticación y usuarios
 - Productos
+- Modelo de empresas para gestionar múltiples organizaciones
 - Importación masiva de productos vía Excel
 - Clientes y proveedores
 - Ventas, presupuestos y facturas

@@ -4,7 +4,7 @@ const Producto = require('../models/Product');
 // GET todos los productos
 const obtenerProductos = async (req, res) => {
   try {
-    const productos = await Producto.find();
+    const productos = await Producto.find({ empresaId: req.empresaId });
     res.json(productos);
   } catch (error) {
     res.status(500).json({ mensaje: 'Error al obtener productos', error: error.message });
@@ -14,7 +14,7 @@ const obtenerProductos = async (req, res) => {
 // GET uno por ID
 const obtenerProducto = async (req, res) => {
   try {
-    const producto = await Producto.findById(req.params.id);
+    const producto = await Producto.findOne({ _id: req.params.id, empresaId: req.empresaId });
     if (!producto) {
       return res.status(404).json({ mensaje: 'Producto no encontrado' });
     }
@@ -27,7 +27,7 @@ const obtenerProducto = async (req, res) => {
 // POST nuevo
 const crearProducto = async (req, res) => {
   try {
-    const producto = new Producto(req.body);
+    const producto = new Producto({ ...req.body, empresaId: req.empresaId });
     await producto.save();
     res.status(201).json(producto);
   } catch (error) {
@@ -38,7 +38,7 @@ const crearProducto = async (req, res) => {
 // PUT actualizar
 const actualizarProducto = async (req, res) => {
   try {
-    const producto = await Producto.findByIdAndUpdate(req.params.id, req.body, {
+    const producto = await Producto.findOneAndUpdate({ _id: req.params.id, empresaId: req.empresaId }, req.body, {
       new: true,
       runValidators: true
     });
@@ -54,7 +54,7 @@ const actualizarProducto = async (req, res) => {
 // DELETE
 const eliminarProducto = async (req, res) => {
   try {
-    const producto = await Producto.findByIdAndDelete(req.params.id);
+    const producto = await Producto.findOneAndDelete({ _id: req.params.id, empresaId: req.empresaId });
     if (!producto) {
       return res.status(404).json({ mensaje: 'Producto no encontrado' });
     }
@@ -69,6 +69,7 @@ const eliminarProducto = async (req, res) => {
     const productos = req.body;
 
     const insertables = productos.map(p => ({
+      empresaId: req.empresaId,
       nombre: p.nombre || '',
       sku: p.sku || '',
       precio: Number(p.precio) || 0,

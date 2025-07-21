@@ -69,6 +69,7 @@ frontend/
 - Dashboard responsivo con navegación lateral (mobile/desktop)
 - Diseño limpio con Tailwind
 - Placeholder y etiquetas para mejor experiencia UX
+- Formulario de demo para registrar una empresa y administrador
 - Panel con KPIs en la página principal
 
 ---
@@ -77,6 +78,7 @@ frontend/
 
 - `/` (landing page)
 - `/login`
+- `/demo`
 - `/dashboard`
 - `/dashboard/usuarios`
 - `/dashboard/usuarios/nuevo`

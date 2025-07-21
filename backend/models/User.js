@@ -8,6 +8,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  empresaId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Empresa',
+    required: true
+  },
   email: {
     type: String,
     required: true,

@@ -7,6 +7,7 @@ import DashboardLayout from '../layout/DashboardLayout';
 
 import Login from '../pages/Login';
 import Landing from '../pages/Landing';
+import SolicitarDemo from '../pages/SolicitarDemo';
 
 import Usuarios from '../pages/usuarios/Usuarios';
 import NuevoUsuario from '../pages/usuarios/NuevoUsuario';
@@ -38,6 +39,7 @@ function AppRoutes() {
     <Routes>
       <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/demo" element={<SolicitarDemo />} />
 
       {/* Dashboard principal con KPIs */}
       <Route

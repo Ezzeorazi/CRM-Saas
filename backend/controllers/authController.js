@@ -19,7 +19,8 @@ const loginUsuario = async (req, res) => {
     const token = jwt.sign(
       {
         id: usuario._id,
-        rol: usuario.rol
+        rol: usuario.rol,
+        empresaId: usuario.empresaId
       },
       process.env.JWT_SECRET,
       { expiresIn: '2h' }
@@ -32,7 +33,8 @@ const loginUsuario = async (req, res) => {
         id: usuario._id,
         nombre: usuario.nombre,
         email: usuario.email,
-        rol: usuario.rol
+        rol: usuario.rol,
+        empresaId: usuario.empresaId
       }
     });
   } catch (error) {
