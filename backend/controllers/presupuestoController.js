@@ -3,7 +3,7 @@ const Presupuesto = require('../models/Presupuesto');
 
 const obtenerPresupuestos = async (req, res) => {
   try {
-    const presupuestos = await Presupuesto.find()
+    const presupuestos = await Presupuesto.find({ empresaId: req.empresaId })
       .populate('cliente')
       .populate('productos.producto');
     res.json(presupuestos);
@@ -14,7 +14,7 @@ const obtenerPresupuestos = async (req, res) => {
 
 const obtenerPresupuesto = async (req, res) => {
   try {
-    const presupuesto = await Presupuesto.findById(req.params.id)
+    const presupuesto = await Presupuesto.findOne({ _id: req.params.id, empresaId: req.empresaId })
       .populate('cliente')
       .populate('productos.producto');
     if (!presupuesto) return res.status(404).json({ mensaje: 'Presupuesto no encontrado' });
@@ -26,7 +26,7 @@ const obtenerPresupuesto = async (req, res) => {
 
 const crearPresupuesto = async (req, res) => {
   try {
-    const presupuesto = new Presupuesto(req.body);
+    const presupuesto = new Presupuesto({ ...req.body, empresaId: req.empresaId });
     const guardado = await presupuesto.save();
     res.status(201).json(guardado);
   } catch (error) {
@@ -36,7 +36,7 @@ const crearPresupuesto = async (req, res) => {
 
 const actualizarPresupuesto = async (req, res) => {
   try {
-    const actualizado = await Presupuesto.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const actualizado = await Presupuesto.findOneAndUpdate({ _id: req.params.id, empresaId: req.empresaId }, req.body, { new: true });
     if (!actualizado) return res.status(404).json({ mensaje: 'Presupuesto no encontrado' });
     res.json(actualizado);
   } catch (error) {
@@ -46,7 +46,7 @@ const actualizarPresupuesto = async (req, res) => {
 
 const eliminarPresupuesto = async (req, res) => {
   try {
-    const eliminado = await Presupuesto.findByIdAndDelete(req.params.id);
+    const eliminado = await Presupuesto.findOneAndDelete({ _id: req.params.id, empresaId: req.empresaId });
     if (!eliminado) return res.status(404).json({ mensaje: 'Presupuesto no encontrado' });
     res.json({ mensaje: 'Presupuesto eliminado' });
   } catch (error) {

@@ -2,6 +2,11 @@
 const mongoose = require('mongoose');
 
 const facturaSchema = new mongoose.Schema({
+  empresaId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Empresa',
+    required: true
+  },
   venta: { type: mongoose.Schema.Types.ObjectId, ref: 'Venta', required: true },
   numero: { type: Number, unique: true },
   subtotal: { type: Number, required: true },

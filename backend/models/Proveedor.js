@@ -3,6 +3,11 @@
 const mongoose = require('mongoose');
 
 const proveedorSchema = new mongoose.Schema({
+  empresaId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Empresa',
+    required: true
+  },
   nombre: { type: String, required: true },
   email: String,
   telefono: String,
