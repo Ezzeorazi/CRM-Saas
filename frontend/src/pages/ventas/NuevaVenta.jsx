@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import clienteAxios from '../../api/clienteAxios';
 import { useNavigate } from 'react-router-dom';
-import FormularioVenta from '../../components/FormularioVenta';
+// Ya no usamos FormularioVenta porque la venta se crea a partir de un presupuesto
 
 function NuevaVenta() {
   const { token } = useContext(AuthContext);
@@ -11,9 +11,9 @@ function NuevaVenta() {
 
   const [venta, setVenta] = useState({
     cliente: '',
-    producto: '',
-    cantidad: 1,
-    precio: 0
+    productos: [],
+    total: 0,
+    presupuesto: ''
   });
   const [presupuestos, setPresupuestos] = useState([]);
   const [presupuestoId, setPresupuestoId] = useState('');
@@ -35,15 +35,22 @@ function NuevaVenta() {
   const handleSelectPresupuesto = (e) => {
     const id = e.target.value;
     setPresupuestoId(id);
-    if (!id) return;
+    if (!id) {
+      setVenta({ cliente: '', productos: [], total: 0, presupuesto: '' });
+      return;
+    }
     const pres = presupuestos.find(p => p._id === id);
     if (pres) {
-      const prod = pres.productos?.[0] || {};
       setVenta({
-        cliente: pres.cliente?.nombre || '',
-        producto: prod.nombre || '',
-        cantidad: prod.cantidad || 1,
-        precio: prod.precio || 0
+        cliente: pres.cliente?._id || pres.cliente,
+        productos: pres.productos.map(pr => ({
+          producto: pr.producto?._id || pr.producto,
+          nombre: pr.nombre || pr.producto?.nombre || '',
+          cantidad: pr.cantidad,
+          precio: pr.precio
+        })),
+        total: pres.total,
+        presupuesto: pres._id
       });
     }
   };
@@ -56,8 +63,19 @@ function NuevaVenta() {
     setMensaje('');
     setError('');
 
+    const datos = {
+      cliente: venta.cliente,
+      productos: venta.productos.map(p => ({
+        producto: p.producto,
+        cantidad: p.cantidad,
+        precio: p.precio
+      })),
+      total: venta.productos.reduce((acc, p) => acc + p.cantidad * p.precio, 0),
+      presupuesto: venta.presupuesto || undefined
+    };
+
     try {
-      await clienteAxios.post('/ventas', venta, {
+      await clienteAxios.post('/ventas', datos, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setMensaje('Venta registrada correctamente');
@@ -90,7 +108,33 @@ function NuevaVenta() {
         </select>
       </div>
 
-      <FormularioVenta venta={venta} setVenta={setVenta} handleSubmit={handleSubmit} />
+      {venta.productos.length > 0 && (
+        <div className="mb-4">
+          <div className="grid grid-cols-4 gap-2 font-semibold text-sm mb-2">
+            <span>Producto</span>
+            <span>Cant.</span>
+            <span>Precio</span>
+            <span>Subtotal</span>
+          </div>
+          {venta.productos.map((prod, idx) => (
+            <div key={idx} className="grid grid-cols-4 gap-2 text-sm py-1">
+              <span>{prod.nombre}</span>
+              <span>{prod.cantidad}</span>
+              <span>${prod.precio}</span>
+              <span>${(prod.cantidad * prod.precio).toFixed(2)}</span>
+            </div>
+          ))}
+          <div className="text-right font-semibold mt-2">
+            Total: ${venta.total.toFixed(2)}
+          </div>
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit}>
+        <button className="bg-blue-600 text-white w-full py-2 rounded hover:bg-blue-700">
+          Registrar venta
+        </button>
+      </form>
     </div>
   );
 }
