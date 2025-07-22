@@ -70,16 +70,30 @@ const crearVentaDesdePresupuesto = async (req, res) => {
       return res.status(400).json({ mensaje: 'Solo se pueden convertir presupuestos aceptados en ventas' });
     }
 
-    const nuevaVenta = new Venta({
-      empresaId: req.empresaId,
-      cliente: presupuesto.cliente._id,
-      productos: presupuesto.productos.map(p => ({
-        producto: p.producto?._id,
+    if (!presupuesto.cliente) {
+      return res.status(400).json({ mensaje: 'El cliente asociado al presupuesto no existe' });
+    }
+
+    // Nos aseguramos de que todos los productos del presupuesto existan
+    const productosConvertidos = [];
+    for (const p of presupuesto.productos) {
+      if (!p.producto) {
+        return res.status(400).json({ mensaje: 'Uno o más productos ya no existen' });
+      }
+      productosConvertidos.push({
+        producto: p.producto._id || p.producto,
         cantidad: p.cantidad,
         precio: p.precio,
         subtotal: p.subtotal
-      })),
-      total: presupuesto.total
+      });
+    }
+
+    const nuevaVenta = new Venta({
+      empresaId: req.empresaId || presupuesto.empresaId,
+      cliente: presupuesto.cliente._id,
+      productos: productosConvertidos,
+      total: presupuesto.total,
+      presupuesto: presupuesto._id
     });
 
     const ventaGuardada = await nuevaVenta.save();
