@@ -89,10 +89,11 @@ const crearVentaDesdePresupuesto = async (req, res) => {
     }
 
     const nuevaVenta = new Venta({
-      empresaId: req.empresaId,
+      empresaId: req.empresaId || presupuesto.empresaId,
       cliente: presupuesto.cliente._id,
       productos: productosConvertidos,
-      total: presupuesto.total
+      total: presupuesto.total,
+      presupuesto: presupuesto._id
     });
 
     const ventaGuardada = await nuevaVenta.save();
