@@ -48,18 +48,6 @@ function Presupuestos() {
     }
   };
 
-  const handleConvertirVenta = async (id) => {
-    if (!confirm('¿Convertir este presupuesto en venta?')) return;
-    try {
-      await clienteAxios.post(`/ventas/desde-presupuesto/${id}`, {}, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      alert('Venta creada con éxito');
-    } catch (error) {
-      console.error('Error al convertir presupuesto en venta', error);
-      alert('No se pudo crear la venta');
-    }
-  };
 
   const togglePresupuesto = (id) => {
     setPresupuestoActivo(presupuestoActivo === id ? null : id);
@@ -117,14 +105,6 @@ function Presupuestos() {
                   </button>
                 )}
 
-                {p.estado?.trim().toLowerCase() === 'aceptado' && (
-                  <button
-                    onClick={() => handleConvertirVenta(p._id)}
-                    className="text-green-600 hover:underline"
-                  >
-                    Convertir en Venta
-                  </button>
-                )}
               </div>
             </div>
           ))}
