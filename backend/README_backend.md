@@ -52,6 +52,23 @@ JWT_SECRET=supersecreto123
 ```
 
 ---
+## 🏃‍♂️ Puesta en marcha
+
+1. Instala las dependencias:
+   ```bash
+   cd backend && npm install
+   ```
+2. Crea el archivo `.env` con las variables indicadas arriba.
+3. Inicia el servidor de desarrollo:
+   ```bash
+   npm run dev
+   ```
+4. Ejecuta las pruebas unitarias con:
+   ```bash
+   npm test
+   ```
+
+---
 ## Flujo multi-tenant
 - Cada usuario pertenece a una empresa identificada por `empresaId`.
 - Al iniciar sesión se genera un JWT con `empresaId`.
@@ -148,6 +165,7 @@ JWT_SECRET=supersecreto123
 - Importación masiva de productos vía Excel
 - Clientes y proveedores
 - Ventas, presupuestos y facturas
+- Ventas creadas a partir de presupuestos aceptados
 - Pagos registrados
 ---
 
