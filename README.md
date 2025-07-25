@@ -57,6 +57,28 @@ crm-saas/
 
 ---
 
+## ⚙️ Puesta en marcha
+
+1. Clona el repositorio e instala las dependencias:
+   ```bash
+   npm install
+   ```
+2. Configura las variables de entorno en `backend/.env` (ver `README_backend.md`).
+3. Inicia el backend y el frontend en terminales separadas:
+   ```bash
+   cd backend && npm run dev
+   ```
+   ```bash
+   cd ../frontend && npm run dev
+   ```
+4. Ejecuta todas las pruebas con:
+   ```bash
+   npm test
+   ```
+   Consulta la documentación específica de cada parte para más detalles.
+
+---
+
 ## 🚦 Estado actual
 
 ### ✅ Backend
@@ -67,6 +89,7 @@ crm-saas/
 - CRUD de clientes
 - CRUD de proveedores
 - Presupuestos, facturas y ventas
+- Ventas creadas a partir de presupuestos aceptados
 - Protección por roles
 - Flujo multi-tenant: usuarios y datos aislados por empresa
 
@@ -76,6 +99,7 @@ crm-saas/
 - Gestión de productos
 - Importar productos desde Excel
 - Gestión de ventas con presupuestos y facturas
+- Formulario de ventas carga automáticamente datos de un presupuesto aceptado
 - Gestión de clientes y proveedores
 - Panel de inicio con KPIs
 - Navegación responsiva y diseño limpio

@@ -35,6 +35,22 @@ frontend/
 ```
 
 ---
+## 🏃‍♂️ Puesta en marcha
+
+1. Instala las dependencias del frontend:
+   ```bash
+   cd frontend && npm install
+   ```
+2. Inicia el servidor de desarrollo:
+   ```bash
+   npm run dev
+   ```
+3. Ejecuta las pruebas de la interfaz con:
+   ```bash
+   npm test
+   ```
+
+---
 
 ## ✨ Funcionalidades actuales
 
@@ -64,6 +80,7 @@ frontend/
 ### ✅ Ventas y facturación
 - Crear ventas con presupuestos y facturas
 - Registrar pagos
+- Formulario de ventas puede cargar automáticamente un presupuesto aceptado
 
 ### ✅ Interfaz general
 - Dashboard responsivo con navegación lateral (mobile/desktop)
