@@ -9,6 +9,7 @@ Este backend incluye:
 - Encriptación de contraseñas con bcrypt
 - Middleware de autenticación y autorización por roles
 - Módulo de ventas con presupuestos, facturación y pagos
+- Inventario con movimientos de stock y reportes
 - Estructura modular escalable
 
 - Arquitectura multi-tenant con modelo `Empresa` y filtros por `empresaId`
@@ -135,6 +136,14 @@ JWT_SECRET=supersecreto123
 - `GET /api/pagos/factura/:facturaId` – Pagos de una factura
 - `POST /api/pagos` – Registrar pago
 
+### Inventario
+- `POST /api/movimientos/entrada` – Registrar entrada de stock
+- `POST /api/movimientos/salida` – Registrar salida de stock
+- `GET /api/movimientos` – Historial de movimientos
+- `GET /api/movimientos/reportes/stock-bajo` – Productos con stock bajo
+- `GET /api/movimientos/reportes/sin-movimientos/:dias` – Productos sin movimientos
+- `GET /api/movimientos/reportes/evolucion/:productoId` – Evolución de stock de un producto
+
 ---
 
 ## 🧪 Middleware incluidos
@@ -167,6 +176,7 @@ JWT_SECRET=supersecreto123
 - Ventas, presupuestos y facturas
 - Ventas creadas a partir de presupuestos aceptados
 - Pagos registrados
+- Inventario con movimientos de stock y reportes
 ---
 
 ## 🧑‍💻 Autor

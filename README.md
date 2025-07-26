@@ -13,6 +13,7 @@
 - API RESTful con protección de rutas
 - Gestión de clientes y proveedores
 - Módulo de ventas con presupuestos y facturación
+- Inventario con entradas, salidas y reportes de stock
 - Dashboard con KPIs
 - Interfaz limpia, responsiva y escalable (React + Tailwind)
 - Arquitectura modular preparada para crecimiento
@@ -90,6 +91,7 @@ crm-saas/
 - CRUD de proveedores
 - Presupuestos, facturas y ventas
 - Ventas creadas a partir de presupuestos aceptados
+- Inventario con movimientos de stock y reportes
 - Protección por roles
 - Flujo multi-tenant: usuarios y datos aislados por empresa
 
@@ -99,14 +101,15 @@ crm-saas/
 - Gestión de productos
 - Importar productos desde Excel
 - Gestión de ventas con presupuestos y facturas
+- Vista detallada de cada venta
 - Formulario de ventas carga automáticamente datos de un presupuesto aceptado
 - Gestión de clientes y proveedores
 - Panel de inicio con KPIs
 - Navegación responsiva y diseño limpio
 - Formulario “Solicitar Demo” para crear una empresa y admin inicial
+- Gestión de inventario (entradas, salidas e historial)
 
 ### 🧩 En desarrollo
-- Módulo de inventario avanzado
 - Panel de tareas y producción
 - Estadísticas y gráficos
 - Automatizaciones (alertas)
