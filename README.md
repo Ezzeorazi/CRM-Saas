@@ -14,6 +14,7 @@
 - Gestión de clientes y proveedores
 - Módulo de ventas con presupuestos y facturación
 - Inventario con entradas, salidas y reportes de stock
+- Tareas y órdenes de producción
 - Dashboard con KPIs
 - Interfaz limpia, responsiva y escalable (React + Tailwind)
 - Arquitectura modular preparada para crecimiento
@@ -92,6 +93,7 @@ crm-saas/
 - Presupuestos, facturas y ventas
 - Ventas creadas a partir de presupuestos aceptados
 - Inventario con movimientos de stock y reportes
+- Tareas y órdenes de producción
 - Protección por roles
 - Flujo multi-tenant: usuarios y datos aislados por empresa
 
@@ -108,9 +110,9 @@ crm-saas/
 - Navegación responsiva y diseño limpio
 - Formulario “Solicitar Demo” para crear una empresa y admin inicial
 - Gestión de inventario (entradas, salidas e historial)
+- Gestión de tareas y órdenes de producción
 
 ### 🧩 En desarrollo
-- Panel de tareas y producción
 - Estadísticas y gráficos
 - Automatizaciones (alertas)
 
