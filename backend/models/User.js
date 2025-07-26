@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
   },
   rol: {
     type: String,
-    enum: ['admin', 'ventas', 'compras', 'inventario', 'rrhh', 'produccion'],
+    enum: ['admin', 'ventas', 'compras', 'inventario', 'rrhh', 'produccion', 'soporte'],
     default: 'ventas'
   }
 }, {
