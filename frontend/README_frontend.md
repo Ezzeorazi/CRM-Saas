@@ -81,6 +81,11 @@ frontend/
 - Crear ventas con presupuestos y facturas
 - Registrar pagos
 - Formulario de ventas puede cargar automáticamente un presupuesto aceptado
+- Ver detalle de cada venta
+
+### ✅ Inventario
+- Registrar entradas y salidas de stock
+- Historial de movimientos
 
 ### ✅ Interfaz general
 - Dashboard responsivo con navegación lateral (mobile/desktop)
@@ -116,12 +121,15 @@ frontend/
 - `/dashboard/ventas`
 - `/dashboard/ventas/nueva`
 - `/dashboard/ventas/editar/:id`
+- `/dashboard/ventas/:id`
+- `/dashboard/inventario`
+- `/dashboard/inventario/entrada`
+- `/dashboard/inventario/salida`
 
 ---
 
 ## 📌 Por implementar
 
-- Módulo de inventario avanzado
 - Búsqueda y filtros
 - Responsive PWA (instalable)
 - Roles visibles en frontend
