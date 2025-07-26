@@ -87,6 +87,14 @@ frontend/
 - Registrar entradas y salidas de stock
 - Historial de movimientos
 
+### ✅ Tareas
+- Crear y actualizar tareas
+- Vista agrupada por estado
+
+### ✅ Producción
+- Crear órdenes de producción
+- Seguimiento de etapas y detalles
+
 ### ✅ Interfaz general
 - Dashboard responsivo con navegación lateral (mobile/desktop)
 - Diseño limpio con Tailwind
@@ -125,6 +133,11 @@ frontend/
 - `/dashboard/inventario`
 - `/dashboard/inventario/entrada`
 - `/dashboard/inventario/salida`
+- `/dashboard/tareas`
+- `/dashboard/tareas/:id`
+- `/dashboard/produccion`
+- `/dashboard/produccion/nueva`
+- `/dashboard/produccion/:id`
 
 ---
 

@@ -10,6 +10,7 @@ Este backend incluye:
 - Middleware de autenticación y autorización por roles
 - Módulo de ventas con presupuestos, facturación y pagos
 - Inventario con movimientos de stock y reportes
+- Tareas y órdenes de producción
 - Estructura modular escalable
 
 - Arquitectura multi-tenant con modelo `Empresa` y filtros por `empresaId`
@@ -143,6 +144,20 @@ JWT_SECRET=supersecreto123
 - `GET /api/movimientos/reportes/stock-bajo` – Productos con stock bajo
 - `GET /api/movimientos/reportes/sin-movimientos/:dias` – Productos sin movimientos
 - `GET /api/movimientos/reportes/evolucion/:productoId` – Evolución de stock de un producto
+
+### Tareas
+- `POST /api/tareas` – Crear tarea
+- `GET /api/tareas` – Listar tareas
+- `GET /api/tareas/:id` – Ver tarea
+- `PUT /api/tareas/:id` – Editar tarea
+- `DELETE /api/tareas/:id` – Eliminar tarea
+
+### Órdenes de producción
+- `POST /api/ordenes` – Crear orden
+- `GET /api/ordenes` – Listar órdenes
+- `GET /api/ordenes/:id` – Ver orden
+- `PUT /api/ordenes/:id` – Editar orden
+- `DELETE /api/ordenes/:id` – Eliminar orden
 
 ---
 
