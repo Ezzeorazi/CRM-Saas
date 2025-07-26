@@ -31,6 +31,10 @@ function DashboardLayout({ children }) {
           <Link to="/dashboard/facturas" className="hover:text-blue-300">Facturas</Link>
           <Link to="/dashboard/presupuestos" className="hover:text-blue-300">Presupuestos</Link>
           <Link to="/dashboard/proveedores" className="hover:text-blue-300">Proveedores</Link>
+          <Link to="/dashboard/tareas" className="hover:text-blue-300">Tareas</Link>
+          {(usuario?.rol === 'admin' || usuario?.rol === 'produccion') && (
+            <Link to="/dashboard/produccion" className="hover:text-blue-300">Producción</Link>
+          )}
         </nav>
 
         <button
@@ -59,6 +63,10 @@ function DashboardLayout({ children }) {
           <Link to="/dashboard/ventas" className="hover:text-blue-300" onClick={toggleSidebar}>Ventas</Link>
           <Link to="/dashboard/proveedores" className="hover:text-blue-300" onClick={toggleSidebar}>Proveedores</Link>
           <Link to="/dashboard/presupuestos" className="hover:text-blue-300" onClick={toggleSidebar}>Presupuestos</Link>
+          <Link to="/dashboard/tareas" className="hover:text-blue-300" onClick={toggleSidebar}>Tareas</Link>
+          {(usuario?.rol === 'admin' || usuario?.rol === 'produccion') && (
+            <Link to="/dashboard/produccion" className="hover:text-blue-300" onClick={toggleSidebar}>Producción</Link>
+          )}
         </nav>
         <button
           onClick={() => { logout(); setSidebarOpen(false); }}
