@@ -3,6 +3,7 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
+import Breadcrumb from '../components/Breadcrumb';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
 function DashboardLayout({ children }) {
@@ -87,6 +88,7 @@ function DashboardLayout({ children }) {
 
         {/* Contenido */}
         <main className="flex-1 p-6 overflow-auto">
+          <Breadcrumb />
           {children}
         </main>
       </div>
