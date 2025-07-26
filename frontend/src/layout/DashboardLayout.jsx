@@ -29,11 +29,12 @@ function DashboardLayout({ children }) {
           <Link to="/dashboard/clientes" className="hover:text-blue-300">Clientes</Link>
           <Link to="/dashboard/facturas" className="hover:text-blue-300">Facturas</Link>
           <Link to="/dashboard/presupuestos" className="hover:text-blue-300">Presupuestos</Link>
+          <Link to="/dashboard/proveedores" className="hover:text-blue-300">Proveedores</Link>
         </nav>
 
         <button
           onClick={logout}
-          className="mt-auto text-sm bg-red-600 px-3 py-1 rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600"
+          className="mt-auto text-sm bg-red-600 px-3 py-1 rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-600 cursor-pointer"
         >
           Cerrar sesión
         </button>
@@ -54,6 +55,8 @@ function DashboardLayout({ children }) {
           <Link to="/dashboard/usuarios" className="hover:text-blue-300" onClick={toggleSidebar}>Usuarios</Link>
           <Link to="/dashboard/productos" className="hover:text-blue-300" onClick={toggleSidebar}>Productos</Link>
           <Link to="/dashboard/ventas" className="hover:text-blue-300" onClick={toggleSidebar}>Ventas</Link>
+          <Link to="/dashboard/proveedores" className="hover:text-blue-300" onClick={toggleSidebar}>Proveedores</Link>
+          <Link to="/dashboard/presupuestos" className="hover:text-blue-300" onClick={toggleSidebar}>Presupuestos</Link>
         </nav>
         <button
           onClick={() => { logout(); setSidebarOpen(false); }}

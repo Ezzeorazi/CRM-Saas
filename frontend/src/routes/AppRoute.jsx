@@ -33,6 +33,7 @@ import EditarVenta from '../pages/ventas/EditarVenta';
 import Presupuestos from '../pages/presupuestos/Presupuestos';
 import NuevoPresupuesto from '../pages/presupuestos/NuevoPresupuesto';
 import Facturas from '../pages/facturas/Facturas';
+import DetalleVenta from '../pages/ventas/DetalleVenta';
 
 function AppRoutes() {
   return (
@@ -204,6 +205,16 @@ function AppRoutes() {
           <PrivateRoute>
             <DashboardLayout>
               <NuevaVenta />
+            </DashboardLayout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/dashboard/ventas/:id"
+        element={
+          <PrivateRoute>
+            <DashboardLayout>
+              <DetalleVenta />
             </DashboardLayout>
           </PrivateRoute>
         }

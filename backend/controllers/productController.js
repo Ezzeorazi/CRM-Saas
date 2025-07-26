@@ -27,10 +27,13 @@ const obtenerProducto = async (req, res) => {
 // POST nuevo
 const crearProducto = async (req, res) => {
   try {
+    console.log('Body recibido:', req.body);
+    console.log('EmpresaId recibido:', req.empresaId);
     const producto = new Producto({ ...req.body, empresaId: req.empresaId });
     await producto.save();
     res.status(201).json(producto);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ mensaje: 'Error al crear producto', error: error.message });
   }
 };

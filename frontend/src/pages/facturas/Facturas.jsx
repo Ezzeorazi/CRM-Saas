@@ -2,6 +2,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import clienteAxios from '../../api/clienteAxios';
+import { Link } from 'react-router-dom'
 
 function Facturas() {
   const { token } = useContext(AuthContext);
@@ -23,8 +24,9 @@ function Facturas() {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-6">Facturas</h2>
-      <div className="overflow-x-auto bg-white rounded shadow">
+      <h2 className="text-2xl font-bold mb-6">Facturas aún no disponible</h2>
+      <Link to="/dashboard">Volver</Link>
+      {/* <div className="overflow-x-auto bg-white rounded shadow">
         <table className="min-w-full text-left">
           <thead className="bg-gray-100">
             <tr>
@@ -50,7 +52,7 @@ function Facturas() {
             )}
           </tbody>
         </table>
-      </div>
+      </div> */}
     </div>
   );
 }

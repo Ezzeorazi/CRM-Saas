@@ -61,11 +61,28 @@ function Ventas() {
           <tbody>
             {ventas.map(venta => (
               <tr key={venta._id} className="border-b hover:bg-gray-50">
-                <td className="p-3">{venta.cliente}</td>
-                <td className="p-3">{venta.producto}</td>
-                <td className="p-3">{venta.cantidad}</td>
-                <td className="p-3">${venta.precio}</td>
+                <td className="p-3">
+                  {venta.cliente?.nombre || venta.cliente?.razonSocial || venta.cliente?.email || '-'}
+                </td>
+                <td className="p-3">
+                  {venta.productos && venta.productos.length > 0
+                    ? venta.productos.map((p, idx) =>
+                      <span key={idx} className="block">
+                        {p.producto?.nombre || p.producto?.sku || '-'} x{p.cantidad}
+                      </span>
+                    )
+                    : '-'}
+                </td>
+                <td className="p-3">
+                  {venta.productos?.reduce((acc, p) => acc + p.cantidad, 0) || 0}
+                </td>
+                <td className="p-3">
+                  ${venta.total?.toFixed(2) || '0.00'}
+                </td>
                 <td className="p-3 flex gap-2 text-sm">
+                  <Link to={`/dashboard/ventas/${venta._id}`} className="text-blue-600 hover:underline">
+                    Ver
+                  </Link>
                   <Link to={`/dashboard/ventas/editar/${venta._id}`} className="text-blue-600 hover:underline">
                     Editar
                   </Link>

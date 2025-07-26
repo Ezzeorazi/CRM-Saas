@@ -54,7 +54,7 @@ function Login() {
           onChange={e => setContraseña(e.target.value)}
           required
         />
-        <button className="bg-blue-600 text-white w-full py-2 rounded hover:bg-blue-700 transition">
+        <button className="bg-blue-600 text-white w-full py-2 rounded hover:bg-blue-700 transition cursor-pointer">
           Iniciar sesión
         </button>
       </form>

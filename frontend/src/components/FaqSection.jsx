@@ -41,7 +41,7 @@ export default function FaqSection() {
         {faqs.map((faq, index) => (
           <div key={index} className="py-4">
             <button
-              className="w-full flex justify-between items-center text-left font-medium"
+              className="w-full flex justify-between items-center text-left font-medium cursor-pointer"
               onClick={() => toggle(index)}
             >
               <span>{faq.question}</span>

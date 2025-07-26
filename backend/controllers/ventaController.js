@@ -25,12 +25,28 @@ const obtenerVenta = async (req, res) => {
 };
 
 const crearVenta = async (req, res) => {
+  const session = await Venta.startSession();
+  session.startTransaction();
   try {
     const venta = new Venta({ ...req.body, empresaId: req.empresaId });
-    const ventaGuardada = await venta.save();
+
+    // Descontar stock de cada producto vendido
+    for (const item of venta.productos) {
+      const producto = await Producto.findById(item.producto).session(session);
+      if (!producto) throw new Error('Producto no encontrado');
+      if (producto.stock < item.cantidad) throw new Error(`Stock insuficiente para ${producto.nombre}`);
+      producto.stock -= item.cantidad;
+      await producto.save({ session });
+    }
+
+    const ventaGuardada = await venta.save({ session });
+    await session.commitTransaction();
     res.status(201).json(ventaGuardada);
   } catch (error) {
+    await session.abortTransaction();
     res.status(500).json({ mensaje: 'Error al crear venta', error: error.message });
+  } finally {
+    session.endSession();
   }
 };
 
