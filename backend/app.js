@@ -61,6 +61,12 @@ app.use('/api/pagos', pagosRoutes);
 const movimientosRoutes = require('./routes/movimientos');
 app.use('/api/movimientos', movimientosRoutes);
 
+const tareasRoutes = require('./routes/tareas');
+app.use('/api/tareas', tareasRoutes);
+
+const ordenesRoutes = require('./routes/ordenes');
+app.use('/api/ordenes', ordenesRoutes);
+
 
 
 module.exports = app;

@@ -163,6 +163,7 @@ JWT_SECRET=supersecreto123
 - `inventario`
 - `rrhh`
 - `produccion`
+- `soporte`
 
 ---
 
@@ -177,6 +178,7 @@ JWT_SECRET=supersecreto123
 - Ventas creadas a partir de presupuestos aceptados
 - Pagos registrados
 - Inventario con movimientos de stock y reportes
+- Tareas y órdenes de producción
 ---
 
 ## 🧑‍💻 Autor

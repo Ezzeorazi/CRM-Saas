@@ -37,6 +37,11 @@ import DetalleVenta from '../pages/ventas/DetalleVenta';
 import HistorialMovimientos from '../pages/inventario/HistorialMovimientos';
 import NuevaEntrada from '../pages/inventario/NuevaEntrada';
 import NuevaSalida from '../pages/inventario/NuevaSalida';
+import Tareas from '../pages/tareas/Tareas';
+import DetalleTarea from '../pages/tareas/DetalleTarea';
+import Ordenes from '../pages/produccion/Ordenes';
+import NuevaOrden from '../pages/produccion/NuevaOrden';
+import DetalleOrden from '../pages/produccion/DetalleOrden';
 
 function AppRoutes() {
   return (
@@ -299,6 +304,66 @@ function AppRoutes() {
             <DashboardLayout>
               <ImportarProductos />
             </DashboardLayout>
+          </PrivateRoute>
+        }
+      />
+
+      {/* Tareas */}
+      <Route
+        path="/dashboard/tareas"
+        element={
+          <PrivateRoute>
+            <DashboardLayout>
+              <Tareas />
+            </DashboardLayout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/dashboard/tareas/:id"
+        element={
+          <PrivateRoute>
+            <DashboardLayout>
+              <DetalleTarea />
+            </DashboardLayout>
+          </PrivateRoute>
+        }
+      />
+
+      {/* Produccion */}
+      <Route
+        path="/dashboard/produccion"
+        element={
+          <PrivateRoute>
+            <RolProtectedRoute rolesPermitidos={['admin', 'produccion']}>
+              <DashboardLayout>
+                <Ordenes />
+              </DashboardLayout>
+            </RolProtectedRoute>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/dashboard/produccion/nueva"
+        element={
+          <PrivateRoute>
+            <RolProtectedRoute rolesPermitidos={['admin', 'produccion']}>
+              <DashboardLayout>
+                <NuevaOrden />
+              </DashboardLayout>
+            </RolProtectedRoute>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/dashboard/produccion/:id"
+        element={
+          <PrivateRoute>
+            <RolProtectedRoute rolesPermitidos={['admin', 'produccion']}>
+              <DashboardLayout>
+                <DetalleOrden />
+              </DashboardLayout>
+            </RolProtectedRoute>
           </PrivateRoute>
         }
       />
