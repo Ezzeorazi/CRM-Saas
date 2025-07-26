@@ -50,6 +50,17 @@ function FormularioProducto({ formulario, setFormulario, handleSubmit, esEdicion
           />
         </div>
         <div>
+          <label className="block font-semibold mb-1">Stock mínimo</label>
+          <input
+            type="number"
+            name="stockMinimo"
+            placeholder="Alerta de reposición"
+            value={formulario.stockMinimo}
+            onChange={handleChange}
+            className="w-full p-2 border rounded"
+          />
+        </div>
+        <div>
           <label className="block font-semibold mb-1">Precio</label>
           <input
             type="number"

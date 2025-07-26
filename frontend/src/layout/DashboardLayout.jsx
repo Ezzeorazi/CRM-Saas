@@ -25,6 +25,7 @@ function DashboardLayout({ children }) {
           )}
 
           <Link to="/dashboard/productos" className="hover:text-blue-300">Productos</Link>
+          <Link to="/dashboard/inventario" className="hover:text-blue-300">Inventario</Link>
           <Link to="/dashboard/ventas" className="hover:text-blue-300">Ventas</Link>
           <Link to="/dashboard/clientes" className="hover:text-blue-300">Clientes</Link>
           <Link to="/dashboard/facturas" className="hover:text-blue-300">Facturas</Link>
@@ -54,6 +55,7 @@ function DashboardLayout({ children }) {
           <Link to="/dashboard" className="hover:text-blue-300" onClick={toggleSidebar}>Inicio</Link>
           <Link to="/dashboard/usuarios" className="hover:text-blue-300" onClick={toggleSidebar}>Usuarios</Link>
           <Link to="/dashboard/productos" className="hover:text-blue-300" onClick={toggleSidebar}>Productos</Link>
+          <Link to="/dashboard/inventario" className="hover:text-blue-300" onClick={toggleSidebar}>Inventario</Link>
           <Link to="/dashboard/ventas" className="hover:text-blue-300" onClick={toggleSidebar}>Ventas</Link>
           <Link to="/dashboard/proveedores" className="hover:text-blue-300" onClick={toggleSidebar}>Proveedores</Link>
           <Link to="/dashboard/presupuestos" className="hover:text-blue-300" onClick={toggleSidebar}>Presupuestos</Link>

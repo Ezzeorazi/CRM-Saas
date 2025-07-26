@@ -14,6 +14,7 @@ function EditarProducto() {
     nombre: '',
     sku: '',
     stock: 0,
+    stockMinimo: 0,
     precio: 0,
     categoria: '',
     activo: true
