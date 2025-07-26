@@ -120,6 +120,7 @@ function Productos() {
               <th className="p-3">Nombre</th>
               <th className="p-3">SKU</th>
               <th className="p-3">Stock</th>
+              <th className="p-3">Stock mín.</th>
               <th className="p-3">Precio</th>
               <th className="p-3">Categoría</th>
               <th className="p-3">Activo</th>
@@ -133,6 +134,7 @@ function Productos() {
                   <td className="p-3">{producto.nombre}</td>
                   <td className="p-3">{producto.sku}</td>
                   <td className="p-3">{producto.stock}</td>
+                  <td className="p-3">{producto.stockMinimo}</td>
                   <td className="p-3">${producto.precio}</td>
                   <td className="p-3">{producto.categoria}</td>
                   <td className="p-3">{producto.activo ? 'Sí' : 'No'}</td>

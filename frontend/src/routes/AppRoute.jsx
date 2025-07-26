@@ -33,6 +33,9 @@ import EditarVenta from '../pages/ventas/EditarVenta';
 import Presupuestos from '../pages/presupuestos/Presupuestos';
 import NuevoPresupuesto from '../pages/presupuestos/NuevoPresupuesto';
 import Facturas from '../pages/facturas/Facturas';
+import HistorialMovimientos from '../pages/inventario/HistorialMovimientos';
+import NuevaEntrada from '../pages/inventario/NuevaEntrada';
+import NuevaSalida from '../pages/inventario/NuevaSalida';
 
 function AppRoutes() {
   return (
@@ -244,6 +247,36 @@ function AppRoutes() {
           <PrivateRoute>
             <DashboardLayout>
               <Facturas />
+            </DashboardLayout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/dashboard/inventario"
+        element={
+          <PrivateRoute>
+            <DashboardLayout>
+              <HistorialMovimientos />
+            </DashboardLayout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/dashboard/inventario/entrada"
+        element={
+          <PrivateRoute>
+            <DashboardLayout>
+              <NuevaEntrada />
+            </DashboardLayout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/dashboard/inventario/salida"
+        element={
+          <PrivateRoute>
+            <DashboardLayout>
+              <NuevaSalida />
             </DashboardLayout>
           </PrivateRoute>
         }
