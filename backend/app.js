@@ -58,6 +58,9 @@ app.use('/api/facturas', facturasRoutes);
 const pagosRoutes = require('./routes/pagos');
 app.use('/api/pagos', pagosRoutes);
 
+const movimientosRoutes = require('./routes/movimientos');
+app.use('/api/movimientos', movimientosRoutes);
+
 
 
 module.exports = app;
