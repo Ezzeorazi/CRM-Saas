@@ -1,12 +1,14 @@
 // Listado de productos consultado en /api/productos.
 import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { useNotification } from '../../context/NotificationContext';
 import clienteAxios from '../../api/clienteAxios';
 import { Link } from 'react-router-dom';
 import FiltrosProductos from './FiltrosProductos';
 
 function Productos() {
   const { token } = useContext(AuthContext);
+  const { showNotification } = useNotification();
   const [productos, setProductos] = useState([]);
   const [filtros, setFiltros] = useState({
     disponibilidad: '',
@@ -89,7 +91,7 @@ function Productos() {
       setProductos(prev => prev.filter(p => p._id !== id));
     } catch (error) {
       console.error(error);
-      alert('Error al eliminar producto');
+      showNotification('error', 'Error al eliminar producto');
     }
   };
 

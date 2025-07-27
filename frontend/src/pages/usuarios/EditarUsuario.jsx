@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import clienteAxios from '../../api/clienteAxios';
 import { AuthContext } from '../../context/AuthContext';
+import { useNotification } from '../../context/NotificationContext';
 
 function EditarUsuario() {
   const { id } = useParams();
@@ -15,7 +16,7 @@ function EditarUsuario() {
     rol: 'ventas',
   });
 
-  const [mensaje, setMensaje] = useState('');
+  const { showNotification } = useNotification();
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -45,17 +46,17 @@ function EditarUsuario() {
   const handleSubmit = async e => {
     e.preventDefault();
     setError('');
-    setMensaje('');
 
     try {
       await clienteAxios.put(`/usuarios/${id}`, formulario, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setMensaje('✅ Usuario actualizado correctamente');
-      setTimeout(() => navigate('/dashboard/usuarios'), 2000);
+      showNotification('success', '✅ Usuario actualizado correctamente');
+      setTimeout(() => navigate('/dashboard/usuarios'), 1500);
     } catch (error) {
       console.error(error);
       setError('❌ Error al actualizar usuario');
+      showNotification('error', '❌ Error al actualizar usuario');
     }
   };
 
@@ -64,7 +65,6 @@ function EditarUsuario() {
       <div className="bg-white shadow-md rounded-lg p-6">
         <h2 className="text-2xl font-bold mb-6 text-gray-800">Editar Usuario</h2>
 
-        {mensaje && <div className="bg-green-100 text-green-800 p-3 rounded mb-4">{mensaje}</div>}
         {error && <div className="bg-red-100 text-red-800 p-3 rounded mb-4">{error}</div>}
 
         <form onSubmit={handleSubmit} className="space-y-5">

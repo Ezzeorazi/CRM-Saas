@@ -1,10 +1,12 @@
 import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { useNotification } from '../../context/NotificationContext';
 import clienteAxios from '../../api/clienteAxios';
 import { Link } from 'react-router-dom';
 
 function Presupuestos() {
   const { token } = useContext(AuthContext);
+  const { showNotification } = useNotification();
   const [presupuestos, setPresupuestos] = useState([]);
   const [presupuestoActivo, setPresupuestoActivo] = useState(null);
 
@@ -31,7 +33,7 @@ function Presupuestos() {
       setPresupuestos(prev => prev.filter(p => p._id !== id));
     } catch (error) {
       console.error(error);
-      alert('Error al eliminar presupuesto');
+      showNotification('error', 'Error al eliminar presupuesto');
     }
   };
 
@@ -44,7 +46,7 @@ function Presupuestos() {
         p._id === id ? { ...p, estado: 'aceptado' } : p
       ));
     } catch (err) {
-      alert('Error al aceptar presupuesto');
+      showNotification('error', 'Error al aceptar presupuesto');
     }
   };
 

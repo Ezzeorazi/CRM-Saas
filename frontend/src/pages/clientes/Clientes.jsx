@@ -1,12 +1,14 @@
 // Listado de clientes obtenido desde /api/clientes.
 import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { useNotification } from '../../context/NotificationContext';
 import clienteAxios from '../../api/clienteAxios';
 import { Link } from 'react-router-dom';
 
 
 function Clientes() {
   const { token } = useContext(AuthContext);
+  const { showNotification } = useNotification();
   const [clientes, setClientes] = useState([]);
 
   useEffect(() => {
@@ -34,7 +36,7 @@ function Clientes() {
       setClientes(prev => prev.filter(c => c._id !== id));
     } catch (error) {
       console.error(error);
-      alert('Error al eliminar cliente');
+      showNotification('error', 'Error al eliminar cliente');
     }
   };
 

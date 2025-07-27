@@ -1,11 +1,13 @@
 import { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { useNotification } from '../../context/NotificationContext';
 import clienteAxios from '../../api/clienteAxios';
 import { useNavigate } from 'react-router-dom';
 import FormularioMovimiento from '../../components/FormularioMovimiento';
 
 function NuevaSalida() {
   const { token } = useContext(AuthContext);
+  const { showNotification } = useNotification();
   const navigate = useNavigate();
   const [datos, setDatos] = useState({ productoId: '', cantidad: 1, motivo: '' });
 
@@ -18,7 +20,7 @@ function NuevaSalida() {
       navigate('/dashboard/inventario');
     } catch (error) {
       console.error(error);
-      alert('Error al registrar salida');
+      showNotification('error', 'Error al registrar salida');
     }
   };
 

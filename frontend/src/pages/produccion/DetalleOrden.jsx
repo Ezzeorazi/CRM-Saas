@@ -2,10 +2,12 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import clienteAxios from '../../api/clienteAxios';
 import { AuthContext } from '../../context/AuthContext';
+import { useNotification } from '../../context/NotificationContext';
 
 function DetalleOrden() {
   const { id } = useParams();
   const { token } = useContext(AuthContext);
+  const { showNotification } = useNotification();
   const [orden, setOrden] = useState(null);
   const navigate = useNavigate();
 
@@ -37,7 +39,7 @@ function DetalleOrden() {
       });
       navigate('/dashboard/produccion');
     } catch (error) {
-      alert('Error al guardar');
+      showNotification('error', 'Error al guardar');
     }
   };
 

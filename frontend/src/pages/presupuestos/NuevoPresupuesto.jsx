@@ -1,12 +1,14 @@
 // Formulario para crear un presupuesto.
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { useNotification } from '../../context/NotificationContext';
 import clienteAxios from '../../api/clienteAxios';
 import { useNavigate } from 'react-router-dom';
 import FormularioPresupuesto from '../../components/FormularioPresupuesto';
 
 function NuevoPresupuesto() {
   const { token } = useContext(AuthContext);
+  const { showNotification } = useNotification();
   const navigate = useNavigate();
 
   const [datos, setDatos] = useState({
@@ -37,7 +39,7 @@ function NuevoPresupuesto() {
 
       navigate('/dashboard/presupuestos');
     } catch (error) {
-      alert('Error al crear presupuesto');
+      showNotification('error', 'Error al crear presupuesto');
       console.error(error);
     }
   };

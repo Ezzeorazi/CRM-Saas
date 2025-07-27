@@ -4,9 +4,11 @@ import clienteAxios from '../../api/clienteAxios';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { useNotification } from '../../context/NotificationContext';
 
 function NuevoCliente() {
   const { token } = useContext(AuthContext);
+  const { showNotification } = useNotification();
   const navigate = useNavigate();
 
   const crearCliente = async (datos) => {
@@ -17,7 +19,7 @@ function NuevoCliente() {
       navigate('/dashboard/clientes');
     } catch (error) {
       console.error(error);
-      alert('Error al crear cliente');
+      showNotification('error', 'Error al crear cliente');
     }
   };
 

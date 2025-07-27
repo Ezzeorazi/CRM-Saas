@@ -1,11 +1,13 @@
 // Historial de ventas con enlaces para editar.
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { useNotification } from '../../context/NotificationContext';
 import clienteAxios from '../../api/clienteAxios';
 import { Link } from 'react-router-dom';
 
 function Ventas() {
   const { token } = useContext(AuthContext);
+  const { showNotification } = useNotification();
   const [ventas, setVentas] = useState([]);
 
   useEffect(() => {
@@ -31,7 +33,7 @@ function Ventas() {
       setVentas(prev => prev.filter(v => v._id !== id));
     } catch (error) {
       console.error(error);
-      alert('Error al eliminar venta');
+      showNotification('error', 'Error al eliminar venta');
     }
   };
 

@@ -2,6 +2,7 @@
 import { useState, useContext } from 'react';
 import clienteAxios from '../../api/clienteAxios';
 import { AuthContext } from '../../context/AuthContext';
+import { useNotification } from '../../context/NotificationContext';
 import { useNavigate } from 'react-router-dom';
 
 function NuevoUsuario() {
@@ -13,7 +14,7 @@ function NuevoUsuario() {
   });
 
   const [error, setError] = useState('');
-  const [mensaje, setMensaje] = useState('');
+  const { showNotification } = useNotification();
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -24,16 +25,16 @@ function NuevoUsuario() {
   const handleSubmit = async e => {
     e.preventDefault();
     setError('');
-    setMensaje('');
 
     try {
       await clienteAxios.post('/usuarios', formulario, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      setMensaje('✅ Usuario creado correctamente');
-      setTimeout(() => navigate('/dashboard/usuarios'), 2000);
+      showNotification('success', '✅ Usuario creado correctamente');
+      setTimeout(() => navigate('/dashboard/usuarios'), 1500);
     } catch (err) {
       setError(err.response?.data?.mensaje || '❌ Error al crear usuario');
+      showNotification('error', err.response?.data?.mensaje || '❌ Error al crear usuario');
     }
   };
 
@@ -42,7 +43,6 @@ function NuevoUsuario() {
       <div className="bg-white shadow-md rounded-lg p-6">
         <h2 className="text-2xl font-bold mb-6 text-gray-800">Crear nuevo usuario</h2>
 
-        {mensaje && <div className="bg-green-100 text-green-800 p-3 rounded mb-4">{mensaje}</div>}
         {error && <div className="bg-red-100 text-red-800 p-3 rounded mb-4">{error}</div>}
 
         <form onSubmit={handleSubmit} className="space-y-5">
