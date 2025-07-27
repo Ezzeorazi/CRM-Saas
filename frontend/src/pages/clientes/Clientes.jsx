@@ -2,6 +2,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { useNotification } from '../../context/NotificationContext';
+import useConfirm from '../../hooks/useConfirm.js';
 import clienteAxios from '../../api/clienteAxios';
 import { Link } from 'react-router-dom';
 
@@ -9,6 +10,7 @@ import { Link } from 'react-router-dom';
 function Clientes() {
   const { token } = useContext(AuthContext);
   const { showNotification } = useNotification();
+  const confirm = useConfirm();
   const [clientes, setClientes] = useState([]);
 
   useEffect(() => {
@@ -27,7 +29,7 @@ function Clientes() {
   }, [token]);
 
   const handleEliminar = async (id) => {
-    const confirmar = confirm('¿Estás seguro de eliminar este cliente?');
+    const confirmar = await confirm('¿Estás seguro de eliminar este cliente?');
     if (!confirmar) return;
     try {
       await clienteAxios.delete(`/clientes/${id}`, {
