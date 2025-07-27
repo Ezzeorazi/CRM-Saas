@@ -1,11 +1,13 @@
 import { useContext } from 'react';
 import clienteAxios from '../../api/clienteAxios';
 import { AuthContext } from '../../context/AuthContext';
+import { useNotification } from '../../context/NotificationContext';
 import { useNavigate } from 'react-router-dom';
 import FormularioOrden from '../../components/FormularioOrden';
 
 function NuevaOrden() {
   const { token } = useContext(AuthContext);
+  const { showNotification } = useNotification();
   const navigate = useNavigate();
 
   const crearOrden = async datos => {
@@ -15,7 +17,7 @@ function NuevaOrden() {
       });
       navigate('/dashboard/produccion');
     } catch (error) {
-      alert('Error al crear orden');
+      showNotification('error', 'Error al crear orden');
     }
   };
 

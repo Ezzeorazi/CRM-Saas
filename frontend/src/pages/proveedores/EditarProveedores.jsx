@@ -3,10 +3,12 @@ import { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import clienteAxios from '../../api/clienteAxios';
 import { AuthContext } from '../../context/AuthContext';
+import { useNotification } from '../../context/NotificationContext';
 import FormularioProveedor from '../../components/FormularioProveedor';
 
 function EditarProveedor() {
   const { token } = useContext(AuthContext);
+  const { showNotification } = useNotification();
   const { id } = useParams();
   const navigate = useNavigate();
   const [proveedor, setProveedor] = useState(null);
@@ -20,7 +22,7 @@ function EditarProveedor() {
         setProveedor(data);
       } catch (error) {
         console.error(error);
-        alert('Error al cargar proveedor');
+        showNotification('error', 'Error al cargar proveedor');
       }
     };
     obtenerProveedor();
@@ -34,7 +36,7 @@ function EditarProveedor() {
       navigate('/dashboard/proveedores');
     } catch (error) {
       console.error(error);
-      alert('Error al actualizar proveedor');
+      showNotification('error', 'Error al actualizar proveedor');
     }
   };
 

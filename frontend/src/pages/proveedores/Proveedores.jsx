@@ -1,11 +1,13 @@
 // Listado de proveedores obtenido desde /api/proveedores.
 import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { useNotification } from '../../context/NotificationContext';
 import clienteAxios from '../../api/clienteAxios';
 import { Link } from 'react-router-dom';
 
 function Proveedores() {
   const { token } = useContext(AuthContext);
+  const { showNotification } = useNotification();
   const [proveedores, setProveedores] = useState([]);
 
   useEffect(() => {
@@ -33,7 +35,7 @@ function Proveedores() {
       setProveedores(prev => prev.filter(p => p._id !== id));
     } catch (error) {
       console.error(error);
-      alert('Error al eliminar proveedor');
+      showNotification('error', 'Error al eliminar proveedor');
     }
   };
 

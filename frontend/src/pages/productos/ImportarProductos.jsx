@@ -3,10 +3,11 @@ import { useState } from 'react';
 import * as XLSX from 'xlsx';
 import clienteAxios from '../../api/clienteAxios';
 import { useAuth } from '../../context/AuthContext';
+import { useNotification } from '../../context/NotificationContext';
 
 function ImportarProductos() {
   const [productosExcel, setProductosExcel] = useState([]);
-  const [mensaje, setMensaje] = useState('');
+  const { showNotification } = useNotification();
   const [loading, setLoading] = useState(false);
 
   const { token } = useAuth();
@@ -14,7 +15,7 @@ function ImportarProductos() {
   const handleFileUpload = (e) => {
     const file = e.target.files?.[0];
     if (!file || !(file instanceof Blob)) {
-      setMensaje('❌ Archivo inválido. Seleccioná un archivo Excel válido.');
+      showNotification('error', '❌ Archivo inválido. Seleccioná un archivo Excel válido.');
       setProductosExcel([]);
       return;
     }
@@ -29,7 +30,7 @@ function ImportarProductos() {
         const parsed = XLSX.utils.sheet_to_json(sheet);
 
         if (parsed.length === 0) {
-          setMensaje('❌ El archivo está vacío o no tiene encabezados válidos.');
+          showNotification('error', '❌ El archivo está vacío o no tiene encabezados válidos.');
           setProductosExcel([]);
           return;
         }
@@ -40,21 +41,21 @@ function ImportarProductos() {
         const columnasFaltantes = columnasObligatorias.filter(col => !columnasArchivo.includes(col));
 
         if (columnasFaltantes.length > 0) {
-          setMensaje(`❌ Faltan columnas obligatorias: ${columnasFaltantes.join(', ')}`);
+          showNotification('error', `❌ Faltan columnas obligatorias: ${columnasFaltantes.join(', ')}`);
           setProductosExcel([]);
           return;
         }
 
         setProductosExcel(parsed);
-        setMensaje('');
+        // limpiar notificación previa si existiera
       } catch (error) {
-        setMensaje('❌ Error al procesar el archivo Excel.');
+        showNotification('error', '❌ Error al procesar el archivo Excel.');
         setProductosExcel([]);
       }
     };
 
     reader.onerror = () => {
-      setMensaje('❌ Error al leer el archivo.');
+      showNotification('error', '❌ Error al leer el archivo.');
       setProductosExcel([]);
     };
 
@@ -63,18 +64,17 @@ function ImportarProductos() {
 
   const enviarProductos = async () => {
     if (!token) {
-      setMensaje('❌ No estás autenticado. Iniciá sesión.');
+      showNotification('error', '❌ No estás autenticado. Iniciá sesión.');
       return;
     }
     setLoading(true);
-    setMensaje('');
     try {
       const { data } = await clienteAxios.post('/productos/importar', productosExcel);
-      setMensaje(`✅ ${data.insertados} productos importados correctamente`);
+      showNotification('success', `✅ ${data.insertados} productos importados correctamente`);
       setProductosExcel([]);
     } catch (error) {
       console.error(error.response?.data);
-      setMensaje('❌ Error al importar productos');
+      showNotification('error', '❌ Error al importar productos');
     } finally {
       setLoading(false);
     }
@@ -133,11 +133,6 @@ function ImportarProductos() {
         </div>
       )}
 
-      {mensaje && (
-        <div className={`mt-4 px-4 py-2 rounded text-sm ${mensaje.startsWith('✅') ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
-          {mensaje}
-        </div>
-      )}
     </div>
   );
 }

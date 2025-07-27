@@ -3,10 +3,12 @@ import { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import clienteAxios from '../../api/clienteAxios';
 import { AuthContext } from '../../context/AuthContext';
+import { useNotification } from '../../context/NotificationContext';
 import FormularioCliente from '../../components/FormularioCliente';
 
 function EditarCliente() {
   const { token } = useContext(AuthContext);
+  const { showNotification } = useNotification();
   const { id } = useParams();
   const navigate = useNavigate();
   const [cliente, setCliente] = useState(null);
@@ -20,7 +22,7 @@ function EditarCliente() {
         setCliente(data);
       } catch (error) {
         console.error(error);
-        alert('Error al cargar cliente');
+        showNotification('error', 'Error al cargar cliente');
       }
     };
     obtenerCliente();
@@ -34,7 +36,7 @@ function EditarCliente() {
       navigate('/dashboard/clientes');
     } catch (error) {
       console.error(error);
-      alert('Error al actualizar cliente');
+      showNotification('error', 'Error al actualizar cliente');
     }
   };
 

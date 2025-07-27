@@ -2,10 +2,12 @@ import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import clienteAxios from '../../api/clienteAxios';
 import { AuthContext } from '../../context/AuthContext';
+import { useNotification } from '../../context/NotificationContext';
 
 function DetalleTarea() {
   const { id } = useParams();
   const { token } = useContext(AuthContext);
+  const { showNotification } = useNotification();
   const [tarea, setTarea] = useState(null);
   const [comentario, setComentario] = useState('');
 
@@ -31,7 +33,7 @@ function DetalleTarea() {
       setComentario('');
       obtenerTarea();
     } catch (error) {
-      alert('Error al comentar');
+      showNotification('error', 'Error al comentar');
     }
   };
 

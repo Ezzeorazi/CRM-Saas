@@ -1,6 +1,7 @@
 // Formulario para crear un producto.
 import { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { useNotification } from '../../context/NotificationContext';
 import clienteAxios from '../../api/clienteAxios';
 import { useNavigate } from 'react-router-dom';
 import FormularioProducto from '../../components/FormularioProducto';
@@ -19,14 +20,13 @@ function NuevoProducto() {
     activo: true
   });
 
-  const [mensaje, setMensaje] = useState('');
+  const { showNotification } = useNotification();
   const [error, setError] = useState('');
 
 
   const handleSubmit = async e => {
     e.preventDefault();
     setError('');
-    setMensaje('');
 
     try {
       await clienteAxios.post('/productos', formulario, {
@@ -34,11 +34,12 @@ function NuevoProducto() {
           Authorization: `Bearer ${token}`
         }
       });
-      setMensaje('Producto creado correctamente');
-      setTimeout(() => navigate('/dashboard/productos'), 2000);
+      showNotification('success', 'Producto creado correctamente');
+      setTimeout(() => navigate('/dashboard/productos'), 1500);
     } catch (error) {
       console.error(error);
       setError(error.response?.data?.mensaje || 'Error al crear producto');
+      showNotification('error', error.response?.data?.mensaje || 'Error al crear producto');
     }
   };
 
@@ -46,7 +47,6 @@ function NuevoProducto() {
     <div className="max-w-lg mx-auto mt-10 bg-white p-6 shadow rounded">
       <h2 className="text-2xl font-bold mb-4">Crear nuevo producto</h2>
 
-      {mensaje && <p className="text-green-600 mb-2">{mensaje}</p>}
       {error && <p className="text-red-600 mb-2">{error}</p>}
 
       <FormularioProducto

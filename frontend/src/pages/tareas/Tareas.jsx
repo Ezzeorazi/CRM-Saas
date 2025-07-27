@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import clienteAxios from '../../api/clienteAxios';
 import { AuthContext } from '../../context/AuthContext';
+import { useNotification } from '../../context/NotificationContext';
 import FormularioTarea from '../../components/FormularioTarea';
 import { Link } from 'react-router-dom';
 
@@ -8,6 +9,7 @@ const estados = ['pendiente', 'en_progreso', 'completada', 'cancelada'];
 
 function Tareas() {
   const { token } = useContext(AuthContext);
+  const { showNotification } = useNotification();
   const [tareas, setTareas] = useState([]);
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
 
@@ -34,7 +36,7 @@ function Tareas() {
       setMostrarFormulario(false);
       obtenerTareas();
     } catch (error) {
-      alert('Error al crear tarea');
+      showNotification('error', 'Error al crear tarea');
     }
   };
 
