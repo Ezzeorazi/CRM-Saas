@@ -94,6 +94,7 @@ crm-saas/
 - Ventas creadas a partir de presupuestos aceptados
 - Inventario con movimientos de stock y reportes
 - Tareas y órdenes de producción
+- Automatización diaria de alerta de stock bajo por correo
 - Protección por roles
 - Flujo multi-tenant: usuarios y datos aislados por empresa
 
@@ -111,6 +112,8 @@ crm-saas/
 - Formulario “Solicitar Demo” para crear una empresa y admin inicial
 - Gestión de inventario (entradas, salidas e historial)
 - Gestión de tareas y órdenes de producción
+- Notificaciones tipo toast y diálogos de confirmación reutilizables
+- Navegación con breadcrumbs en el dashboard
 
 ### 🧩 En desarrollo
 - Estadísticas y gráficos
