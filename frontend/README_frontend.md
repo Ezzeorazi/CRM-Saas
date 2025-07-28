@@ -99,7 +99,9 @@ frontend/
 - Dashboard responsivo con navegación lateral (mobile/desktop)
 - Diseño limpio con Tailwind
 - Placeholder y etiquetas para mejor experiencia UX
+- Breadcrumbs para indicar la ubicación actual
 - Formulario de demo para registrar una empresa y administrador
+- Notificaciones tipo toast y cuadros de confirmación reutilizables
 - Panel con KPIs en la página principal
 
 ---
