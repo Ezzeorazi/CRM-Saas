@@ -11,6 +11,7 @@ Este backend incluye:
 - Módulo de ventas con presupuestos, facturación y pagos
 - Inventario con movimientos de stock y reportes
 - Tareas y órdenes de producción
+- Exportación de presupuestos a PDF con logo corporativo
 - Job diario para enviar alertas de stock bajo por correo
 - Estructura modular escalable
 
@@ -81,6 +82,7 @@ JWT_SECRET=supersecreto123
 
 ### Empresas
 - `POST /api/empresas` – Registrar empresa y usuario administrador (demo)
+- `POST /api/empresa/logo` – Subir logo de la empresa
 
 ### Usuarios
 
@@ -126,6 +128,7 @@ JWT_SECRET=supersecreto123
 - `GET /api/presupuestos/:id` – Ver presupuesto
 - `PUT /api/presupuestos/:id` – Editar presupuesto
 - `DELETE /api/presupuestos/:id` – Eliminar presupuesto
+- `GET /api/presupuestos/:id/pdf` – Descargar presupuesto en PDF
 
 ### Facturas
 - `POST /api/facturas` – Crear factura
@@ -192,6 +195,7 @@ JWT_SECRET=supersecreto123
 - Clientes y proveedores
 - Ventas, presupuestos y facturas
 - Ventas creadas a partir de presupuestos aceptados
+- Presupuestos descargables en PDF con logo corporativo
 - Pagos registrados
 - Inventario con movimientos de stock y reportes
 - Tareas y órdenes de producción
