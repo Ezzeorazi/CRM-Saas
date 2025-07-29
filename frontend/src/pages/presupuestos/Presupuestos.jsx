@@ -50,6 +50,24 @@ function Presupuestos() {
     }
   };
 
+  const handleExportarPDF = async (id) => {
+    try {
+      const { data } = await clienteAxios.get(`/presupuestos/${id}/pdf`, {
+        responseType: 'blob',
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      const url = window.URL.createObjectURL(new Blob([data], { type: 'application/pdf' }));
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'presupuesto.pdf';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    } catch (err) {
+      showNotification('error', 'Error al generar PDF');
+    }
+  };
+
 
   const togglePresupuesto = (id) => {
     setPresupuestoActivo(presupuestoActivo === id ? null : id);
@@ -96,6 +114,10 @@ function Presupuestos() {
               <div className="pt-3 flex justify-between flex-wrap gap-4 text-sm">
                 <button onClick={() => handleEliminar(p._id)} className="text-red-600 hover:underline">
                   Eliminar
+                </button>
+
+                <button onClick={() => handleExportarPDF(p._id)} className="text-green-600 hover:underline">
+                  Descargar PDF
                 </button>
 
                 {p.estado?.trim().toLowerCase() === 'pendiente' && (
