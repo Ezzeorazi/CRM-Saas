@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 const clienteAxios = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: import.meta.env.VITE_BACKEND_URL,
 });
 
 // Adjunta automáticamente el token almacenado si existe
