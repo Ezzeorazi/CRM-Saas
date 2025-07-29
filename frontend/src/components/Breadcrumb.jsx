@@ -11,7 +11,7 @@ function Breadcrumb() {
   if (!segments.includes('dashboard')) return null;
 
   const nameMap = {
-    dashboard: 'Dashboard',
+    dashboard: 'Home',
     usuarios: 'Usuarios',
     productos: 'Productos',
     clientes: 'Clientes',

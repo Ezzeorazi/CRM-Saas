@@ -1,7 +1,10 @@
 {
   "name": "crm-saas-monorepo",
   "private": true,
-  "workspaces": ["backend", "frontend"],
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
   "scripts": {
     "test": "npm-run-all --parallel test:backend test:frontend",
     "test:backend": "npm run test --workspace backend",
