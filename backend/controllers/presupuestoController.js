@@ -1,6 +1,9 @@
 // Controlador de presupuestos para Presupuestos.jsx
 const Presupuesto = require('../models/Presupuesto');
 const PDFDocument = require('pdfkit');
+const Empresa = require('../models/Empresa');
+const path = require('path');
+const fs = require('fs');
 
 const obtenerPresupuestos = async (req, res) => {
   try {
@@ -62,13 +65,29 @@ const descargarPDF = async (req, res) => {
       .populate('productos.producto');
     if (!presupuesto) return res.status(404).json({ mensaje: 'Presupuesto no encontrado' });
 
-    const doc = new PDFDocument();
+    const empresa = await Empresa.findById(req.empresaId);
+    const formatter = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' });
+
+    const doc = new PDFDocument({ margin: 50 });
     res.setHeader('Content-Type', 'application/pdf');
     res.setHeader('Content-Disposition', `attachment; filename=presupuesto-${presupuesto._id}.pdf`);
     doc.pipe(res);
 
+    if (empresa && empresa.logoUrl) {
+      const logoPath = path.join(__dirname, '..', empresa.logoUrl);
+      if (fs.existsSync(logoPath)) {
+        doc.image(logoPath, { width: 120 });
+      } else {
+        doc.fontSize(18).text(empresa.nombre, { align: 'center' });
+      }
+    } else if (empresa) {
+      doc.fontSize(18).text(empresa.nombre, { align: 'center' });
+    }
+    doc.moveDown();
+
     doc.fontSize(20).text('Presupuesto', { align: 'center' });
     doc.moveDown();
+
     if (presupuesto.cliente) {
       doc.fontSize(12).text(`Cliente: ${presupuesto.cliente.nombre}`);
     }
@@ -76,10 +95,14 @@ const descargarPDF = async (req, res) => {
     doc.moveDown();
 
     presupuesto.productos.forEach(p => {
-      doc.text(`${p.nombre} x ${p.cantidad} - $${p.subtotal.toFixed(2)}`);
+      const nombre = p.producto ? p.producto.nombre : p.nombre;
+      doc.text(`${nombre} x ${p.cantidad} - ${formatter.format(p.subtotal)}`);
     });
     doc.moveDown();
-    doc.fontSize(14).text(`Total: $${presupuesto.total.toFixed(2)}`, { align: 'right' });
+    doc.fontSize(14).text(`Total: ${formatter.format(presupuesto.total)}`, { align: 'right' });
+
+    doc.moveDown();
+    doc.fontSize(10).text('Presupuesto válido por 15 días', { align: 'center' });
 
     doc.end();
   } catch (error) {

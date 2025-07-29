@@ -8,5 +8,8 @@ frontend/node_modules/
 frontend/.env
 build/
 
+# Uploads
+backend/uploads/
+
 # VSCode
 .vscode/

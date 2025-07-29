@@ -40,6 +40,9 @@ app.use('/api/productos', productoRoutes);
 const empresasRoutes = require('./routes/empresas');
 app.use('/api/empresas', empresasRoutes);
 
+const empresaRoutes = require('./routes/empresa');
+app.use('/api/empresa', empresaRoutes);
+
 const clientesRoutes = require('./routes/clientes');
 app.use('/api/clientes', clientesRoutes);
 
