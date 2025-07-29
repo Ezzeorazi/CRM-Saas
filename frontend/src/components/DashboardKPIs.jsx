@@ -16,16 +16,16 @@ function DashboardKPIs() {
     const fetchData = async () => {
       try {
         const [resUsuarios, resProductos, resClientes, resProveedores] = await Promise.all([
-          axios.get(`${import.meta.env.VITE_API_URL}/usuarios`, {
+          axios.get(`${import.meta.env.VITE_BACKEND_URL}/usuarios`, {
             headers: { Authorization: `Bearer ${token}` }
           }),
-          axios.get(`${import.meta.env.VITE_API_URL}/productos`, {
+          axios.get(`${import.meta.env.VITE_BACKEND_URL}/productos`, {
             headers: { Authorization: `Bearer ${token}` }
           }),
-          axios.get(`${import.meta.env.VITE_API_URL}/clientes`, {
+          axios.get(`${import.meta.env.VITE_BACKEND_URL}/clientes`, {
             headers: { Authorization: `Bearer ${token}` }
           }),
-          axios.get(`${import.meta.env.VITE_API_URL}/proveedores`, {
+          axios.get(`${import.meta.env.VITE_BACKEND_URL}/proveedores`, {
             headers: { Authorization: `Bearer ${token}` }
           }),
         ]);
