@@ -7,12 +7,14 @@ const {
   obtenerPresupuesto,
   crearPresupuesto,
   actualizarPresupuesto,
-  eliminarPresupuesto
+  eliminarPresupuesto,
+  descargarPDF
 } = require('../controllers/presupuestoController');
 
 const { verificarToken, permitirRoles } = require('../middleware/authMiddleware');
 
 router.get('/', verificarToken, obtenerPresupuestos);
+router.get('/:id/pdf', verificarToken, descargarPDF);
 router.get('/:id', verificarToken, obtenerPresupuesto);
 router.post('/', verificarToken, permitirRoles('admin', 'ventas'), crearPresupuesto);
 router.put('/:id', verificarToken, permitirRoles('admin', 'ventas'), actualizarPresupuesto);
