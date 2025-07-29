@@ -7,6 +7,7 @@ const empresaSchema = new mongoose.Schema({
   },
   plan: String,
   colorPrimario: String,
+  logoUrl: String,
   subdominio: {
     type: String,
     unique: true

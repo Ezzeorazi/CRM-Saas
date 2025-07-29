@@ -1,7 +1,9 @@
 const presupuestoController = require('../controllers/presupuestoController');
 const Presupuesto = require('../models/Presupuesto');
+const Empresa = require('../models/Empresa');
 
 jest.mock('../models/Presupuesto');
+jest.mock('../models/Empresa');
 jest.mock('pdfkit', () => {
   return jest.fn().mockImplementation(() => ({
     pipe: jest.fn(),
@@ -20,6 +22,8 @@ describe('descargarPDF', () => {
       then: (resolve) => Promise.resolve(resolve(presupuestoMock))
     };
     Presupuesto.findOne.mockReturnValue(query);
+
+    Empresa.findById.mockResolvedValue({ nombre: 'Empresa', logoUrl: '' });
 
     const req = { params: { id: '1' }, empresaId: 'empresa1' };
     const res = { setHeader: jest.fn() };
