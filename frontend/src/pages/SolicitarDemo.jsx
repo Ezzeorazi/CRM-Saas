@@ -8,7 +8,6 @@ export default function SolicitarDemo() {
     nombreEmpresa: '',
     plan: 'demo',
     colorPrimario: '#4f46e5',
-    subdominio: '',
     nombreUsuario: '',
     emailUsuario: '',
     contraseña: ''
@@ -31,7 +30,6 @@ export default function SolicitarDemo() {
       nombre: formulario.nombreEmpresa,
       plan: formulario.plan,
       colorPrimario: formulario.colorPrimario,
-      subdominio: formulario.subdominio,
       nombreUsuario: formulario.nombreUsuario,
       emailUsuario: formulario.emailUsuario,
       contraseña: formulario.contraseña
@@ -41,7 +39,6 @@ export default function SolicitarDemo() {
       nombreEmpresa: '',
       plan: 'demo',
       colorPrimario: '#4f46e5',
-      subdominio: '',
       nombreUsuario: '',
       emailUsuario: '',
       contraseña: ''
@@ -67,16 +64,6 @@ export default function SolicitarDemo() {
               onChange={handleChange}
               className="w-full p-2 border rounded"
               required
-            />
-          </div>
-          <div>
-            <label className="block mb-1">Subdominio deseado</label>
-            <input
-              type="text"
-              name="subdominio"
-              value={formulario.subdominio}
-              onChange={handleChange}
-              className="w-full p-2 border rounded"
             />
           </div>
           <div>

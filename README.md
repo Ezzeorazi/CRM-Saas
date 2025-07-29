@@ -92,7 +92,7 @@ crm-saas/
 - CRUD de proveedores
 - Presupuestos, facturas y ventas
 - Ventas creadas a partir de presupuestos aceptados
-- Presupuestos descargables en PDF con logo de la empresa
+- Presupuestos descargables en PDF con logo de la empresa (formato PNG)
 - Inventario con movimientos de stock y reportes
 - Tareas y órdenes de producción
 - Automatización diaria de alerta de stock bajo por correo
