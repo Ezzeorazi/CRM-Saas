@@ -146,7 +146,6 @@ frontend/
 
 ## 📌 Por implementar
 
-- Búsqueda y filtros
 - Responsive PWA (instalable)
 - Roles visibles en frontend
 - Gráficos y estadísticas
