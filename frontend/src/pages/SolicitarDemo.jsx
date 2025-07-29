@@ -15,6 +15,8 @@ export default function SolicitarDemo() {
   });
   const { showNotification } = useNotification();
   const [error, setError] = useState('');
+  const API_URL = import.meta.env.VITE_BACKEND_URL;
+
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -22,34 +24,33 @@ export default function SolicitarDemo() {
   };
 
   const handleSubmit = async e => {
-    e.preventDefault();
-    setError('');
-    try {
-      await axios.post('http://localhost:5000/api/empresas', {
-        nombre: formulario.nombreEmpresa,
-        plan: formulario.plan,
-        colorPrimario: formulario.colorPrimario,
-        subdominio: formulario.subdominio,
-        nombreUsuario: formulario.nombreUsuario,
-        emailUsuario: formulario.emailUsuario,
-        contraseña: formulario.contraseña
-      });
-      showNotification('success', 'Empresa creada correctamente. Ya podés iniciar sesión.');
-      setFormulario({
-        nombreEmpresa: '',
-        plan: 'demo',
-        colorPrimario: '#4f46e5',
-        subdominio: '',
-        nombreUsuario: '',
-        emailUsuario: '',
-        contraseña: ''
-      });
-    } catch (err) {
-      setError(err.response?.data?.mensaje || 'Error al crear empresa');
-      showNotification('error', err.response?.data?.mensaje || 'Error al crear empresa');
-    }
-  };
-
+  e.preventDefault();
+  setError('');
+  try {
+    await axios.post(`${API_URL}/empresas`, {
+      nombre: formulario.nombreEmpresa,
+      plan: formulario.plan,
+      colorPrimario: formulario.colorPrimario,
+      subdominio: formulario.subdominio,
+      nombreUsuario: formulario.nombreUsuario,
+      emailUsuario: formulario.emailUsuario,
+      contraseña: formulario.contraseña
+    });
+    showNotification('success', 'Empresa creada correctamente. Ya podés iniciar sesión.');
+    setFormulario({
+      nombreEmpresa: '',
+      plan: 'demo',
+      colorPrimario: '#4f46e5',
+      subdominio: '',
+      nombreUsuario: '',
+      emailUsuario: '',
+      contraseña: ''
+    });
+  } catch (err) {
+    setError(err.response?.data?.mensaje || 'Error al crear empresa');
+    showNotification('error', err.response?.data?.mensaje || 'Error al crear empresa');
+  }
+};
   return (
     <>
       <Header />
