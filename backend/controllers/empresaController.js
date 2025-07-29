@@ -16,10 +16,10 @@ const storage = multer.diskStorage({
 const uploadLogo = multer({ storage });
 
 const crearEmpresaDemo = async (req, res) => {
-  const { nombre, plan, colorPrimario, subdominio, nombreUsuario, emailUsuario, contraseña } = req.body;
+  const { nombre, plan, colorPrimario, nombreUsuario, emailUsuario, contraseña } = req.body;
 
   try {
-    const empresa = new Empresa({ nombre, plan, colorPrimario, subdominio });
+    const empresa = new Empresa({ nombre, plan, colorPrimario });
     const empresaGuardada = await empresa.save();
 
     const user = new User({

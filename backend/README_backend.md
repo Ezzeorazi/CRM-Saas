@@ -11,7 +11,7 @@ Este backend incluye:
 - Módulo de ventas con presupuestos, facturación y pagos
 - Inventario con movimientos de stock y reportes
 - Tareas y órdenes de producción
-- Exportación de presupuestos a PDF con logo corporativo
+- Exportación de presupuestos a PDF con logo corporativo (formato PNG)
 - Job diario para enviar alertas de stock bajo por correo
 - Estructura modular escalable
 
@@ -195,7 +195,7 @@ JWT_SECRET=supersecreto123
 - Clientes y proveedores
 - Ventas, presupuestos y facturas
 - Ventas creadas a partir de presupuestos aceptados
-- Presupuestos descargables en PDF con logo corporativo
+- Presupuestos descargables en PDF con logo corporativo (formato PNG)
 - Pagos registrados
 - Inventario con movimientos de stock y reportes
 - Tareas y órdenes de producción
