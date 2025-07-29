@@ -82,6 +82,7 @@ frontend/
 - Registrar pagos
 - Formulario de ventas puede cargar automáticamente un presupuesto aceptado
 - Ver detalle de cada venta
+- Descargar presupuestos en PDF
 
 ### ✅ Inventario
 - Registrar entradas y salidas de stock
@@ -145,7 +146,6 @@ frontend/
 
 ## 📌 Por implementar
 
-- Búsqueda y filtros
 - Responsive PWA (instalable)
 - Roles visibles en frontend
 - Gráficos y estadísticas
