@@ -127,6 +127,8 @@ crm-saas/
 **Ezequiel** – Desarrollo Fullstack MERN  
 Proyecto SaaS personal para empresas medianas.
 
+Para un análisis detallado del funcionamiento y la arquitectura revisa el archivo `README_FUNCIONAMIENTO.md`.
+
 ---
 
 ## 📄 Licencia
