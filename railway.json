@@ -2,7 +2,7 @@
   "build": {
     "builder": "NIXPACKS",
     "buildCommand": "npm install",
-    "startCommand": "npm start",
+    "startCommand": "npm run dev",
     "rootDirectory": "backend"
   }
 }
