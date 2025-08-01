@@ -1,5 +1,6 @@
 // Controlador de ventas. Conecta Ventas.jsx con la base de datos
 const Venta = require('../models/Venta');
+const Producto = require('../models/Product'); 
 
 const obtenerVentas = async (req, res) => {
   try {
@@ -28,9 +29,12 @@ const crearVenta = async (req, res) => {
   const session = await Venta.startSession();
   session.startTransaction();
   try {
+    if (!Array.isArray(req.body.productos) || req.body.productos.length === 0) {
+      return res.status(400).json({ mensaje: 'La venta debe tener al menos un producto.' });
+    }
+
     const venta = new Venta({ ...req.body, empresaId: req.empresaId });
 
-    // Descontar stock de cada producto vendido
     for (const item of venta.productos) {
       const producto = await Producto.findById(item.producto).session(session);
       if (!producto) throw new Error('Producto no encontrado');

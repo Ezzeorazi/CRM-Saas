@@ -1,4 +1,3 @@
-// Listado de productos consultado en /api/productos.
 import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { useNotification } from '../../context/NotificationContext';
@@ -27,12 +26,12 @@ function Productos() {
           headers: { Authorization: `Bearer ${token}` }
         });
 
-        // Limpieza defensiva
         const productosLimpios = data.map((p) => ({
           ...p,
           nombre: p.nombre || '',
           sku: p.sku || '',
           stock: p.stock ?? 0,
+          stockMinimo: p.stockMinimo ?? 0,
           precio: p.precio ?? 0,
           categoria: p.categoria || '',
           activo: p.activo ?? true
@@ -49,14 +48,13 @@ function Productos() {
 
   const productosFiltrados = productos
     .filter((p) => {
-      const coincideBusqueda = (p.nombre || '').toLowerCase().includes(filtros.busqueda.toLowerCase());
+      const coincideBusqueda = p.nombre.toLowerCase().includes(filtros.busqueda.toLowerCase());
       const coincideDisponibilidad =
         filtros.disponibilidad === '' ||
         (filtros.disponibilidad === 'disponible' && p.stock > 0) ||
         (filtros.disponibilidad === 'agotado' && p.stock === 0);
       const coincideCategoria =
-        filtros.categoria === '' ||
-        (p.categoria?.toLowerCase() || '').includes(filtros.categoria.toLowerCase());
+        filtros.categoria === '' || p.categoria.toLowerCase().includes(filtros.categoria.toLowerCase());
       const coincideActivo =
         filtros.activo === '' ||
         (filtros.activo === 'activo' && p.activo) ||
@@ -96,27 +94,31 @@ function Productos() {
   };
 
   return (
-    <div>
-      <div className="flex justify-between items-center mb-4 flex-wrap gap-4">
+    <div className="relative">
+      {/* Encabezado y acciones */}
+      <div className="flex flex-wrap justify-between items-center mb-4 gap-2">
         <h2 className="text-2xl font-bold">Productos</h2>
-        <Link
-          to="/dashboard/productos/nuevo"
-          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-        >
-          + Nuevo Producto
-        </Link>
-        <Link
-          to="/dashboard/productos/importar"
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-        >
-          📁 Importar Excel
-        </Link>
+        <div className="hidden sm:flex gap-2">
+          <Link
+            to="/dashboard/productos/nuevo"
+            className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+          >
+            + Nuevo Producto
+          </Link>
+          <Link
+            to="/dashboard/productos/importar"
+            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          >
+            📁 Importar Excel
+          </Link>
+        </div>
       </div>
 
       <FiltrosProductos filtros={filtros} setFiltros={setFiltros} />
 
-      <div className="overflow-x-auto bg-white rounded shadow mt-4">
-        <table className="min-w-full text-left">
+      {/* Tabla para pantallas grandes */}
+      <div className="hidden sm:block overflow-x-auto bg-white rounded shadow mt-4">
+        <table className="min-w-full text-left text-sm">
           <thead className="bg-gray-100">
             <tr>
               <th className="p-3">Nombre</th>
@@ -155,13 +157,54 @@ function Productos() {
               ))
             ) : (
               <tr>
-                <td colSpan="7" className="text-center p-4 text-gray-500">
+                <td colSpan="8" className="text-center p-4 text-gray-500">
                   No se encontraron productos
                 </td>
               </tr>
             )}
           </tbody>
         </table>
+      </div>
+
+      {/* Tarjetas para móviles */}
+      <div className="sm:hidden mt-4 space-y-4">
+        {productosFiltrados.length > 0 ? productosFiltrados.map(producto => (
+          <div key={producto._id} className="bg-white rounded shadow p-4 space-y-2">
+            <p><strong>Nombre:</strong> {producto.nombre}</p>
+            <p><strong>SKU:</strong> {producto.sku}</p>
+            <p><strong>Stock:</strong> {producto.stock}</p>
+            <p><strong>Stock mín.:</strong> {producto.stockMinimo}</p>
+            <p><strong>Precio:</strong> ${producto.precio}</p>
+            <p><strong>Categoría:</strong> {producto.categoria}</p>
+            <p><strong>Activo:</strong> {producto.activo ? 'Sí' : 'No'}</p>
+            <div className="flex gap-3 pt-2 text-sm">
+              <Link to={`/dashboard/productos/editar/${producto._id}`} className="text-blue-600 hover:underline">
+                Editar
+              </Link>
+              <button onClick={() => handleEliminar(producto._id)} className="text-red-600 hover:underline">
+                Eliminar
+              </button>
+            </div>
+          </div>
+        )) : (
+          <p className="text-center text-gray-500">No se encontraron productos</p>
+        )}
+      </div>
+
+      {/* Botón flotante para móviles */}
+      <div className="sm:hidden fixed bottom-4 right-4 flex flex-col gap-2">
+        <Link
+          to="/dashboard/productos/nuevo"
+          className="bg-green-600 text-white px-4 py-2 rounded-full shadow-lg hover:bg-green-700"
+        >
+          +
+        </Link>
+        <Link
+          to="/dashboard/productos/importar"
+          className="bg-blue-600 text-white px-3 py-2 rounded-full shadow-lg hover:bg-blue-700 text-xs text-center"
+        >
+          📁
+        </Link>
       </div>
     </div>
   );

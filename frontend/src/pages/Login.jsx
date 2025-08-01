@@ -1,8 +1,8 @@
-// Vista de login. Envía las credenciales a authRoutes para obtener el token.
 import { useContext, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import { motion } from 'framer-motion';
 import Header from '../layout/Header';
 
 function Login() {
@@ -21,7 +21,7 @@ function Login() {
     try {
       const { data } = await axios.post(`${API_URL}/auth/login`, {
         email,
-        contraseña
+        contraseña,
       });
 
       login(data.usuario, data.token);
@@ -33,34 +33,48 @@ function Login() {
 
   return (
     <>
-    <Header/>
-    <div className="max-w-md mx-auto m-10 p-6 shadow-md border rounded-xl">
-      <h2 className="text-xl font-bold mb-4">Iniciar sesión</h2>
-      {error && <p className="text-red-500 text-sm">{error}</p>}
+    <Header modoLanding={false}/>
+      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="w-full max-w-md p-6 bg-white rounded-xl shadow-md"
+        >
+          <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Iniciar sesión</h2>
 
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Email"
-          className="w-full p-2 border rounded mb-3"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Contraseña"
-          className="w-full p-2 border rounded mb-4"
-          value={contraseña}
-          onChange={e => setContraseña(e.target.value)}
-          required
-        />
-        <button className="bg-blue-600 text-white w-full py-2 rounded hover:bg-blue-700 transition cursor-pointer">
-          Iniciar sesión
-        </button>
-      </form>
-      
-    </div>
+          {error && (
+            <div className="mb-4 text-red-600 text-sm text-center bg-red-100 p-2 rounded">
+              {error}
+            </div>
+          )}
+
+          <form onSubmit={handleLogin} className="space-y-4">
+            <input
+              type="email"
+              placeholder="Correo electrónico"
+              className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              required
+            />
+            <input
+              type="password"
+              placeholder="Contraseña"
+              className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={contraseña}
+              onChange={e => setContraseña(e.target.value)}
+              required
+            />
+            <button
+              type="submit"
+              className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+            >
+              Iniciar sesión
+            </button>
+          </form>
+        </motion.div>
+      </div>
     </>
   );
 }

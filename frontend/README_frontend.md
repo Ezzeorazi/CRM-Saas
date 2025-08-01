@@ -86,7 +86,7 @@ frontend/
 
 ### ✅ Inventario
 - Registrar entradas y salidas de stock
-- Historial de movimientos
+wwa<- Historial de movimientos
 
 ### ✅ Tareas
 - Crear y actualizar tareas

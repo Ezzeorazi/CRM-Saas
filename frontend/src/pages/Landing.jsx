@@ -1,4 +1,5 @@
 // Página de bienvenida antes de iniciar sesión.
+import { motion } from 'framer-motion';
 import Header from '../layout/Header';
 import FaqSection from '../components/FaqSection';
 
@@ -6,31 +7,65 @@ export default function Landing() {
   return (
     <div className="flex flex-col min-h-screen font-sans">
       {/* Hero Section */}
-      <Header/>
+      <Header modoLanding/>
 
       {/* Características */}
       <section className="py-16 px-6 bg-white text-center">
-        <h2 className="text-3xl font-bold mb-6">¿Por qué elegir Nimbus?</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          <div className="p-6 border rounded-lg shadow">
-            <h3 className="text-xl font-semibold mb-2">Modular</h3>
-            <p>Agregá o quitá funcionalidades según las necesidades de tu empresa.</p>
-          </div>
-          <div className="p-6 border rounded-lg shadow">
-            <h3 className="text-xl font-semibold mb-2">Acceso seguro</h3>
-            <p>Control de accesos por roles y autenticación JWT integrada.</p>
-          </div>
-          <div className="p-6 border rounded-lg shadow">
-            <h3 className="text-xl font-semibold mb-2">Diseñado por programadores</h3>
-            <p>Construido con código limpio, rendimiento y escalabilidad en mente.</p>
-          </div>
-        </div>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-3xl font-bold mb-6"
+        >
+          ¿Por qué elegir Nimbus?
+        </motion.h2>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
+        >
+          {[{
+            titulo: 'Modular',
+            texto: 'Agregá o quitá funcionalidades según las necesidades de tu empresa.'
+          }, {
+            titulo: 'Acceso seguro',
+            texto: 'Control de accesos por roles y autenticación JWT integrada.'
+          }, {
+            titulo: 'Diseñado por programadores',
+            texto: 'Construido con código limpio, rendimiento y escalabilidad en mente.'
+          }].map(({ titulo, texto }, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: 'spring', stiffness: 300 }}
+              className="p-6 border rounded-lg shadow bg-white"
+            >
+              <h3 className="text-xl font-semibold mb-2">{titulo}</h3>
+              <p>{texto}</p>
+            </motion.div>
+          ))}
+        </motion.div>
       </section>
 
-            {/* Fundador / Filosofía Personal */}
+      {/* Fundador / Filosofía Personal */}
       <section className="py-16 px-6 bg-gray-50 text-center">
-        <h2 className="text-3xl font-bold mb-6">Desde la experiencia real, para negocios reales</h2>
-        <div className="max-w-3xl mx-auto text-lg text-gray-700 space-y-4">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-3xl font-bold mb-6"
+        >
+          Desde la experiencia real, para negocios reales
+        </motion.h2>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+          className="max-w-3xl mx-auto text-lg text-gray-700 space-y-4"
+        >
           <p>
             Soy Ezequiel. Técnico electromecánico, comunicador, y durante más de 10 años trabajé en empresas desde todos los ángulos:
             administración, compras, ventas, contaduría, depósitos y hasta en planta como operario.
@@ -49,14 +84,20 @@ export default function Landing() {
           <p className="font-semibold text-gray-900">
             Este CRM no es solo software. Es una forma distinta de hacer que tu negocio funcione mejor, con alguien que estuvo en tu lugar.
           </p>
-        </div>
-        </section>
+        </motion.div>
+      </section>
 
       {/* Preguntas frecuentes */}
       <FaqSection />
 
       {/* Llamado a la acción */}
-      <section id="contacto" className="py-16 px-6 bg-gray-100 text-center">
+      <motion.section
+        id="contacto"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="py-16 px-6 bg-gray-100 text-center"
+      >
         <h2 className="text-3xl font-bold mb-4">¿Querés ver cómo funciona?</h2>
         <p className="mb-6">Contactanos y te armamos una demo adaptada a tu negocio.</p>
         <a
@@ -65,7 +106,7 @@ export default function Landing() {
         >
           Escribinos
         </a>
-      </section>
+      </motion.section>
     </div>
   );
 }

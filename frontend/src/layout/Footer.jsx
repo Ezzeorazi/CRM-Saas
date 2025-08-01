@@ -1,27 +1,28 @@
-// Pie de página global.
-// Se muestra al final de todas las vistas.
-import { Link } from "react-router-dom";
-
+// src/layout/Footer.jsx
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
-    <>
-      <footer className="bg-gray-900 text-white py-6 mt-auto px-6">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center text-sm">
-          <p className="mb-4 md:mb-0">&copy; {new Date().getFullYear()} <a className=" hover:text-blue-600" href="http://ezequiel.orazi-online">Ezequiel Orazi</a>. Todos los derechos reservados.</p>
-          <div className="flex gap-4">
-            <Link to="/" className="hover:underline">
-              Home
-            </Link>
-            <a href="mailto:info@nimbuscrm.com" className="hover:underline">
-              Contacto
-            </a>
-            <Link to="/login" className="hover:underline">
-              Login
-            </Link>
-          </div>
-        </div>
-      </footer>
-    </>
-  )
+    <footer className="bg-gray-900 text-gray-300 py-6 px-4 mt-auto">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
+        <p className="text-center md:text-left">
+          &copy; {new Date().getFullYear()}{" "}
+          <a
+            href="http://ezequiel.orazi-online"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-400 hover:text-blue-500 transition"
+          >
+            Ezequiel Orazi
+          </a>. Todos los derechos reservados.
+        </p>
+
+        <nav className="flex gap-4 flex-wrap justify-center md:justify-end">
+          <Link to="/" className="hover:text-white transition">Inicio</Link>
+          <a href="mailto:info@nimbuscrm.com" className="hover:text-white transition">Contacto</a>
+          <Link to="/login" className="hover:text-white transition">Login</Link>
+        </nav>
+      </div>
+    </footer>
+  );
 }
