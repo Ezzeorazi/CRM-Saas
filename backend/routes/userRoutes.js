@@ -12,9 +12,22 @@ const {
   eliminarUsuario
 } = require('../controllers/userController');
 const { verificarToken } = require('../middleware/authMiddleware');
+const { check } = require('express-validator');
+const { validar } = require('../middleware/validationMiddleware');
 
 router.get('/', verificarToken, obtenerUsuarios);
-router.post('/', verificarToken, crearUsuario);
+router.post(
+  '/',
+  verificarToken,
+  [
+    check('nombre', 'El nombre es obligatorio').not().isEmpty(),
+    check('email', 'Email inválido').isEmail(),
+    check('contraseña', 'La contraseña debe tener al menos 6 caracteres').isLength({ min: 6 }),
+    check('rol', 'Rol inválido').isIn(['admin', 'ventas', 'compras', 'inventario', 'rrhh', 'produccion', 'soporte'])
+  ],
+  validar,
+  crearUsuario
+);
 router.get('/:id', verificarToken, obtenerUsuarioPorId);
 router.put('/:id', verificarToken, actualizarUsuario);
 router.delete('/:id', verificarToken, eliminarUsuario);
