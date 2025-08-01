@@ -7,7 +7,7 @@ const clienteAxios = axios.create({
 });
 
 // Adjunta automáticamente el token almacenado si existe
-clienteAxios.interceptors.request.use((config) => {
+clienteAxios.interceptors.request.use(config => {
   const token = localStorage.getItem('token');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
