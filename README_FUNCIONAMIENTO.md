@@ -6,7 +6,7 @@ Este documento detalla el flujo completo de la aplicación utilizando terminolog
 
 - **Full Stack MERN** (MongoDB, Express.js, React, Node.js).
 - Patrón **RESTful** para la comunicación entre frontend y backend.
-- Despliegue orientado a la nube: servidores Node en Render y frontend estático en Vercel.
+- Despliegue orientado a la nube: servidores Node en Railway y frontend estático en Netlify.
 
 ## Flujo de Autenticación
 
