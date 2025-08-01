@@ -50,66 +50,66 @@ export default function SolicitarDemo() {
 
   return (
     <>
-    <Header modoLanding={false}/>
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 to-blue-100 px-4">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        className="w-full max-w-xl p-8 bg-white shadow-2xl rounded-2xl"
-      >
-        {exito ? (
-          <motion.div
-            initial={{ scale: 0.9 }}
-            animate={{ scale: 1 }}
-            transition={{ type: 'spring', stiffness: 200 }}
-            className="flex flex-col items-center text-center"
-          >
-            <CheckCircleIcon className="w-16 h-16 text-green-500 mb-4" />
-            <h2 className="text-2xl font-bold text-gray-800">¡Listo!</h2>
-            <p className="text-gray-600 mt-2">Tu demo fue creada con éxito. Redirigiendo...</p>
-          </motion.div>
-        ) : (
-          <>
-            <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">Solicitar demo</h2>
+      <Header modoLanding={false} />
+      <div className="flex flex-col items-center justify-center bg-gradient-to-br from-gray-100 to-blue-100 py-10 px-4 flex-grow">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="w-full max-w-xl p-8 bg-white shadow-2xl rounded-2xl"
+        >
+          {exito ? (
+            <motion.div
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              transition={{ type: 'spring', stiffness: 200 }}
+              className="flex flex-col items-center text-center"
+            >
+              <CheckCircleIcon className="w-16 h-16 text-green-500 mb-4" />
+              <h2 className="text-2xl font-bold text-gray-800">¡Listo!</h2>
+              <p className="text-gray-600 mt-2">Tu demo fue creada con éxito. Redirigiendo...</p>
+            </motion.div>
+          ) : (
+            <>
+              <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">Solicitar demo</h2>
 
-            {error && (
-              <div className="bg-red-100 text-red-800 text-sm p-3 rounded mb-4 text-center">
-                {error}
-              </div>
-            )}
-
-            <form onSubmit={handleSubmit} className="space-y-5">
-              {[
-                { label: 'Nombre de la empresa', name: 'nombreEmpresa', type: 'text' },
-                { label: 'Nombre del usuario administrador', name: 'nombreUsuario', type: 'text' },
-                { label: 'Correo electrónico', name: 'emailUsuario', type: 'email' },
-                { label: 'Contraseña', name: 'contraseña', type: 'password' }
-              ].map(({ label, name, type }) => (
-                <div key={name}>
-                  <label className="block mb-1 font-medium text-gray-700">{label}</label>
-                  <input
-                    type={type}
-                    name={name}
-                    value={formulario[name]}
-                    onChange={handleChange}
-                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    required
-                  />
+              {error && (
+                <div className="bg-red-100 text-red-800 text-sm p-3 rounded mb-4 text-center">
+                  {error}
                 </div>
-              ))}
+              )}
 
-              <button
-                type="submit"
-                className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium text-lg hover:bg-blue-700 transition"
-              >
-                Crear empresa
-              </button>
-            </form>
-          </>
-        )}
-      </motion.div>
-    </div>
+              <form onSubmit={handleSubmit} className="space-y-5">
+                {[
+                  { label: 'Nombre de la empresa', name: 'nombreEmpresa', type: 'text' },
+                  { label: 'Nombre del usuario administrador', name: 'nombreUsuario', type: 'text' },
+                  { label: 'Correo electrónico', name: 'emailUsuario', type: 'email' },
+                  { label: 'Contraseña', name: 'contraseña', type: 'password' }
+                ].map(({ label, name, type }) => (
+                  <div key={name}>
+                    <label className="block mb-1 font-medium text-gray-700">{label}</label>
+                    <input
+                      type={type}
+                      name={name}
+                      value={formulario[name]}
+                      onChange={handleChange}
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      required
+                    />
+                  </div>
+                ))}
+
+                <button
+                  type="submit"
+                  className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium text-lg hover:bg-blue-700 transition"
+                >
+                  Crear empresa
+                </button>
+              </form>
+            </>
+          )}
+        </motion.div>
+      </div>
     </>
   );
 }

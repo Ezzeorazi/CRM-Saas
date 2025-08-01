@@ -39,7 +39,7 @@ export default function Header({ modoLanding = true }) {
                 Iniciar Sesión
               </Link>
               <Link
-                to="/solicitar-demo"
+                to="/demo"
                 className="bg-blue-800 text-white px-6 py-2 rounded shadow hover:bg-blue-900 transition"
               >
                 Solicitar Demo

@@ -34,7 +34,7 @@ function Login() {
   return (
     <>
     <Header modoLanding={false}/>
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="flex flex-col items-center justify-center bg-gray-100 py-10 px-4 flex-grow">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
