@@ -86,7 +86,7 @@ frontend/
 
 ### ✅ Inventario
 - Registrar entradas y salidas de stock
-wwa<- Historial de movimientos
+- Historial de movimientos
 
 ### ✅ Tareas
 - Crear y actualizar tareas
@@ -155,3 +155,5 @@ wwa<- Historial de movimientos
 ## 🧑‍💻 Autor
 
 **Ezequiel** – Desarrollo Fullstack MERN
+
+Para una descripción completa de la arquitectura revisa `README_FUNCIONAMIENTO.md` en la raíz del repositorio.

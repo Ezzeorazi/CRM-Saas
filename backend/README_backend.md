@@ -204,3 +204,5 @@ JWT_SECRET=supersecreto123
 ## 🧑‍💻 Autor
 
 Ezequiel – Desarrollo Fullstack MERN
+
+Para una descripción global del proyecto consulta `README_FUNCIONAMIENTO.md` en el directorio raíz.
