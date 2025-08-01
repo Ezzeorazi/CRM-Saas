@@ -49,7 +49,7 @@ function AppRoutes() {
       <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Login />} />
       <Route path="/demo" element={<SolicitarDemo />} />
-
+ 
       {/* Dashboard principal con KPIs */}
       <Route
         path="/dashboard"
