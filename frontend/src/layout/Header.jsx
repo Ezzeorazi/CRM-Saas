@@ -16,12 +16,15 @@ export default function Header({ modoLanding = true }) {
       <div className="max-w-5xl mx-auto px-4">
         {/* Logo */}
         <div className="flex justify-center items-center mb-4">
-          <img
-            src={logo}
-            alt="Logo Nimbus CRM"
-            className={`${isLanding ? 'h-32' : 'h-12'} transition-all duration-300`}
-          />
+          <Link to="/">
+            <img
+              src={logo}
+              alt="Logo Nimbus CRM"
+              className={`${isLanding ? 'h-32' : 'h-12'} transition-all duration-300`}
+            />
+          </Link>
         </div>
+
 
         {/* Solo en landing */}
         {isLanding && (
