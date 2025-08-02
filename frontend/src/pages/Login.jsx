@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
-import clienteAxios from '../config/clienteAxios'; // Asegurate que la ruta sea correcta
+import clienteAxios from '../api/clienteAxios'; // Asegurate que la ruta sea correcta
 import { motion } from 'framer-motion';
 import Header from '../layout/Header';
 
