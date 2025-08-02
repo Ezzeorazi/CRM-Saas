@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import clienteAxios from '../config/clienteAxios'; // Asegurate que la ruta sea correcta
 import { motion } from 'framer-motion';
 import Header from '../layout/Header';
 
@@ -12,14 +12,13 @@ function Login() {
 
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
-  const API_URL = import.meta.env.VITE_BACKEND_URL;
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
 
     try {
-      const { data } = await axios.post(`${API_URL}/auth/login`, {
+      const { data } = await clienteAxios.post('/auth/login', {
         email,
         contraseña,
       });
@@ -33,7 +32,7 @@ function Login() {
 
   return (
     <>
-    <Header modoLanding={false}/>
+      <Header modoLanding={false} />
       <div className="flex flex-col items-center justify-center bg-gray-100 py-10 px-4 flex-grow">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
