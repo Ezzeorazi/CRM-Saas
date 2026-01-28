@@ -8,7 +8,7 @@ export default function Footer() {
         <p className="text-center md:text-left">
           &copy; {new Date().getFullYear()}{" "}
           <a
-            href="http://ezequiel.orazi-online"
+            href="http://ezequiel-orazi.online"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-400 hover:text-blue-500 transition"
